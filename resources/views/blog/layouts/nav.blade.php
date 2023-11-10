@@ -29,12 +29,6 @@
                 マイメニュー
             </a>
         </li>
-        <li class="text-center align-items-center d-flex justify-content-center mt-5">
-            <a href="" class="text-start">
-                <i class="bi bi-door-closed-fill"></i>
-                ログアウト
-            </a>
-        </li>
     </ul>
 </nav>
 
