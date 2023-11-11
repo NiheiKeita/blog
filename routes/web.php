@@ -13,16 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {return view('welcome');});
-Route::namespace('App\Http\Controllers\Blog')->name('blog.')->group(function () {
-    Route::match(['get', 'post'], 'index', 'TopController@index')->name('index');
-
-    Route::prefix('laravel')->name('laravel.')->group(function () {
-        Route::match(['get', 'post'], 'index', 'LaravelController@index')->name('index');
-        Route::match(['get', 'post'], '002', 'LaravelController@content002')->name('002');
-    });
-    Route::prefix('xampp')->name('xampp.')->group(function () {
-        Route::match(['get', 'post'], 'index', 'XamppController@index')->name('index');
-        Route::match(['get', 'post'], '002', 'XamppController@content001')->name('001');
-    });
+Route::namespace('App\Http\Controllers\Blog')->prefix('blogs')->name('blog.')->group(function () {
+    Route::match(['get', 'post'], '/', 'BlogController@index')->name('index');
+    Route::match(['get', 'post'], '{id}', 'BlogController@content')->name('blog');
 });

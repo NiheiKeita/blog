@@ -11,7 +11,8 @@ class TopController extends Controller
 
     public function index(Request $request){
         $title = $this->title;
-        return view('blog.index',compact('title'));
+        $num = '001';
+        return view('blog.index',compact('title','num'));
     }
 
 }

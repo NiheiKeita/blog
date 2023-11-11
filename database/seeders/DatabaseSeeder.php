@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Blog;
+use App\Models\Tag;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $tags = Tag::factory(5)->create();
+        Blog::factory(10)
+            ->hasAttached($tags)
+            ->create();
     }
 }

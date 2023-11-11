@@ -3,7 +3,7 @@
 @section('content')
 @include('layouts.header')
 <main>
-    top
+    @include('blog.contents.'.$num)
 </main>
 @include('layouts.footer')
 @endsection
