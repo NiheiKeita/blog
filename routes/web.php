@@ -17,3 +17,7 @@ Route::namespace('App\Http\Controllers\Blog')->prefix('blogs')->name('blog.')->g
     Route::match(['get', 'post'], '/', 'BlogController@index')->name('index');
     Route::match(['get', 'post'], '{id}', 'BlogController@content')->name('blog');
 });
+Route::namespace('App\Http\Controllers\Blog')->group(function () {
+    Route::match(['get', 'post'], '/', 'TopController@index')->name('top');
+});
+// Route::inertia('/', 'Dashboard');
