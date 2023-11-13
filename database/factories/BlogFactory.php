@@ -18,8 +18,8 @@ class BlogFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->realText(10),
             'content' => fake()->realText(10),
+            'meta_title' => fake()->realText(10),
         ];
     }
 }

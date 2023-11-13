@@ -5,9 +5,13 @@ defineProps({
 </script>
 
 <template>
-    <div>
-        Hello world!
-        <div href="/" class="text-sm text-red-700 underline">ホームへ戻る</div>
-        {{ hello }}
+    <div class="font-body">
+        <div class="fixed inset-0 -z-10 bg-gray-50 md:mx-[20%]"></div>
+        <Header class="z-50" />
+        <div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
 </template>
