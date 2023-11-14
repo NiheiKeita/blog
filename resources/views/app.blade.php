@@ -8,7 +8,7 @@
     <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    @vite('resources/js/app.js') @inertiaHead
+    @vite('resources/js/app.js') @inertiaHead  @routes
   </head>
 
   <body class="font-sans antialiased">

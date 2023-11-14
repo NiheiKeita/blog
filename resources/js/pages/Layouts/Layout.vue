@@ -1,25 +1,27 @@
 <script setup>
 import Header from "../Layouts/Header.vue";
+import RightSideMenu from "../Layouts/RightSideMenu.vue";
 </script>
 <template>
-    <div class="h-screen w-100 font-body">
-        <!-- <header class="font-body">
-        </header> -->
+    <div class="h-screen w-100 font-body break-words">
         <Header class="z-50" />
-        <!-- <div class="fixed inset-0 -z-10 bg-gray-50 lg:mx-[20%]"></div> -->
-
-        <main class="h-full w-full flex">
-            <div class="lg:w-1/5 bg-red-700 h-full"></div>
-            <div class="w-full lg:w-3/5 bg-gray-50 h-full">
-                <slot />
+        <main class="h-full w-full flex bg-gray-50">
+            <div class="lg:w-1/6 h-full" />
+            <div class="w-full lg:w-2/3 h-full flex">
+                <div
+                    class="w-full lg:w-3/4 h-full p-8 bg-white shadow-md rounded-md text-gray-700"
+                >
+                    <slot />
+                </div>
+                <div class="lg:w-1/4 w-0 h-full ml-3">
+                    <RightSideMenu />
+                </div>
             </div>
-            <div class="lg:w-1/5 bg-blue-700 h-full"></div>
+            <div class="lg:w-1/6 h-full" />
         </main>
 
         <footer class="">
             <h2>フッター</h2>
-
-            <input type="email" />
         </footer>
     </div>
 </template>
