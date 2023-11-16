@@ -9,7 +9,7 @@ export default {
         extend: {
             colors: {
                 ThemaColor: "#CCCC99",
-                TexasRose: "#ffad5b",
+                Linen: "#FBECEC",
                 ThemaColorComplementary: "#5badff",
                 ThemaColorInversion: "#0052a4",
                 ThemaColorHover: "#ffcea0",

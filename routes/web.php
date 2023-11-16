@@ -21,4 +21,12 @@ Route::namespace('App\Http\Controllers\Blog')->prefix('blogs')->name('blog.')->g
 Route::namespace('App\Http\Controllers\Blog')->group(function () {
     Route::match(['get', 'post'], '/', 'TopController@index')->name('top');
 });
-// Route::inertia('/', 'Dashboard');
+
+
+
+
+Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/login', 'LoginController@login')->name('login');
+    Route::post('/login', 'LoginController@check')->name('login.check');
+    Route::match(['get', 'post'], '/logout', 'LoginController@logout')->name('logout');
+});

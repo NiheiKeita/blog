@@ -11,7 +11,7 @@
     app/Http/Kernel.phpを開き、ウェブミドルウェアの最後の項目としてHandleInertiaRequestsを登録
 
     vueライブラリをインストール
-    npm install @inertiajs/inertia @inertiajs/inertia-vue3
+    npm install @inertiajs/vue3
     npm install vue@next
     npm i @vitejs/plugin-vue
 

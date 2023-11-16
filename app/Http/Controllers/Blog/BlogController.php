@@ -22,7 +22,7 @@ class BlogController extends Controller
         $title = $this->title;
         $num = $request->id;
         $blog = Blog::find($request->id);
-        return Inertia::render('Contents/Blog'.$num, [
+        return Inertia::render('Blog/Contents/Blog'.$num, [
             'blog' => $blog,
         ]);
 
