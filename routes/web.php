@@ -29,4 +29,6 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->name('admin.')-
     Route::get('/login', 'LoginController@login')->name('login');
     Route::post('/login', 'LoginController@check')->name('login.check');
     Route::match(['get', 'post'], '/logout', 'LoginController@logout')->name('logout');
+
+    Route::match(['get', 'post'], '/top', 'TopController@index')->name('top');
 });

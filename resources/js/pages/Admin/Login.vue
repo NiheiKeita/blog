@@ -2,27 +2,27 @@
 import Layout from "@/Admin/Layouts/Layout.vue";
 import ButtonDefaultThema from "@/Components/button/DefaultThema.vue";
 import InputDefaultThema from "@/Components/input/DefaultThema.vue";
-import { router } from "@inertiajs/vue3";
-import { reactive, ref } from "vue";
+import { useForm } from "@inertiajs/vue3";
+import { ref } from "vue";
 defineProps({ errors: Object });
 
 const emailRef = ref("");
 const passwordRef = ref("");
-const form = reactive({
+// const form = reactive({
+//     email: null,
+//     password: null,
+//     remember: false,
+// });
+const form = useForm({
     email: null,
     password: null,
     remember: false,
 });
 const submit = () => {
-    // form.email = emailRef.value;
-    // form.password = passwordRef.value;
-    // router.post(route("admin.login.check"), form);
-    // console.log(route("admin.login.check"));
-    router.post("/admin/login", form);
-    // console.log(form);
-    // console.log(errors);
-    // form.post(route("admin.login.check"));
-    // console.log(errors);
+    form.email = emailRef.value;
+    form.password = passwordRef.value;
+
+    form.post(route("admin.login.check"));
 };
 </script>
 
@@ -32,7 +32,7 @@ const submit = () => {
             <div
                 class="mt-10 flex items-center justify-center text-3xl font-bold"
             >
-                <p>新規登録</p>
+                <p>ログイン</p>
             </div>
             <div class="flex items-center justify-center">
                 <div class="w-1/3">
@@ -50,7 +50,7 @@ const submit = () => {
                     </div>
                     <ButtonDefaultThema
                         class="my-2 mt-10"
-                        msg="登録する"
+                        msg="ログインする"
                         @click="submit"
                     />
                     <div>
