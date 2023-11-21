@@ -10,13 +10,14 @@ defineProps({ errors: Object });
             <div
                 class="mt-10 flex items-center justify-center text-3xl font-bold"
             >
-                <p>Top</p>
+                <p>ブログリスト</p>
             </div>
             <div class="flex items-center justify-center">
-                <div class="w-1/3">
-                    <div>
-                        <Link :href="route('admin.blog.index')">更新</Link>
-                    </div>
+                <div>
+                    <Link :href="route('admin.blog.create')">新規作成</Link>
+                </div>
+                <div>
+                    <Link :href="route('admin.blog.edit', 2)">更新</Link>
                 </div>
             </div>
         </div>
