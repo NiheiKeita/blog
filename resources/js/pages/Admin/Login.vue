@@ -8,11 +8,6 @@ defineProps({ errors: Object });
 
 const emailRef = ref("");
 const passwordRef = ref("");
-// const form = reactive({
-//     email: null,
-//     password: null,
-//     remember: false,
-// });
 const form = useForm({
     email: null,
     password: null,

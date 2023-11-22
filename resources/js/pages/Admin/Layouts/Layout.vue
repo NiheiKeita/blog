@@ -4,12 +4,12 @@ import Header from "./Header.vue";
 <template>
     <div class="h-screen w-100 font-body break-words">
         <Header class="z-50" />
-        <main class="h-full w-full flex bg-gray-50">
-            <div class="lg:w-1/6 h-full" />
-            <div class="w-full lg:w-2/3 h-full">
+        <main class="min-h-full w-full flex bg-gray-50">
+            <div class="lg:w-1/6 min-h-full" />
+            <div class="w-full lg:w-2/3 min-h-full">
                 <slot />
             </div>
-            <div class="lg:w-1/6 h-full" />
+            <div class="lg:w-1/6 min-h-full" />
         </main>
 
         <footer class="">

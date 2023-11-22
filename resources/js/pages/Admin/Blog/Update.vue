@@ -21,7 +21,7 @@ const submit = () => {
             <div
                 class="mt-10 flex items-center justify-center text-3xl font-bold"
             >
-                <p>ブログ更新</p>
+                <p>ブログ内容編集</p>
             </div>
             <div class="flex items-center justify-center"></div>
         </div>

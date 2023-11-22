@@ -1,15 +1,18 @@
 <script setup>
 import Layout from "@/Admin/Layouts/Layout.vue";
+import ButtonDefaultThema from "@/Components/button/DefaultThema.vue";
 import { useForm } from "@inertiajs/vue3";
+import { ref } from "vue";
 defineProps({ errors: Object });
+
+const nameRef = ref("");
+
 const form = useForm({
-    email: null,
-    password: null,
+    name: null,
     remember: false,
 });
 const submit = () => {
-    form.email = emailRef.value;
-    form.password = passwordRef.value;
+    form.name = nameRef.value;
 
     form.post(route("admin.blog.store"));
 };
@@ -26,7 +29,7 @@ const submit = () => {
             <div class="flex items-center justify-center">
                 <ButtonDefaultThema
                     class="my-2 mt-10"
-                    msg="ログインする"
+                    msg="作成する"
                     @click="submit"
                 />
             </div>
