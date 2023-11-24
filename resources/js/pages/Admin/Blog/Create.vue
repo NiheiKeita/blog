@@ -1,20 +1,33 @@
 <script setup>
 import Layout from "@/Admin/Layouts/Layout.vue";
 import ButtonDefaultThema from "@/Components/button/DefaultThema.vue";
+import ButtonSub from "@/Components/button/Sub.vue";
+import InputDefaultThema from "@/Components/input/DefaultThema.vue";
 import { useForm } from "@inertiajs/vue3";
 import { ref } from "vue";
 defineProps({ errors: Object });
 
-const nameRef = ref("");
+const contentRef = ref("");
+const metaTitleRef = ref("");
+const metaDescriptionRef = ref("");
+const tagsRef = ref("");
 
 const form = useForm({
-    name: null,
-    remember: false,
+    content: null,
+    meta_title: null,
+    meta_description: null,
+    tags: null,
 });
 const submit = () => {
-    form.name = nameRef.value;
+    form.content = contentRef.value;
+    form.meta_title = metaTitleRef.value;
+    form.meta_description = metaDescriptionRef.value;
+    form.tags = tagsRef.value;
 
     form.post(route("admin.blog.store"));
+};
+const back = () => {
+    window.history.back();
 };
 </script>
 
@@ -26,12 +39,50 @@ const submit = () => {
             >
                 <p>ブログ新規作成</p>
             </div>
-            <div class="flex items-center justify-center">
-                <ButtonDefaultThema
-                    class="my-2 mt-10"
-                    msg="作成する"
-                    @click="submit"
-                />
+            <div class="flex items-center justify-center mt-20">
+                <div class="w-2/3">
+                    <div>ブログのタイトル</div>
+                    <InputDefaultThema
+                        v-model="contentRef"
+                        type="text"
+                        name="content"
+                        :error="errors.content"
+                        class="mt-2"
+                    />
+                    <div class="mt-5">metaタグのtitle</div>
+                    <InputDefaultThema
+                        v-model="metaTitleRef"
+                        type="text"
+                        name="meta_title"
+                        class="mt-2"
+                    />
+                    <div class="mt-5">meta_description</div>
+                    <InputDefaultThema
+                        v-model="metaDescriptionRef"
+                        type="text"
+                        name="meta_description"
+                        class="mt-2"
+                    />
+                    <div class="mt-5">タグ</div>
+                    <InputDefaultThema
+                        v-model="tagsRef"
+                        type="text"
+                        name="tags"
+                        class="mt-2"
+                    />
+                    <div class="flex justify-evenly">
+                        <ButtonSub
+                            class="my-2 mt-10 flex items-center justify-center"
+                            msg="戻る"
+                            @click="back"
+                        />
+                        <ButtonDefaultThema
+                            class="my-2 mt-10 flex items-center justify-center"
+                            msg="作成する"
+                            @click="submit"
+                        />
+                    </div>
+                </div>
             </div>
         </div>
     </Layout>

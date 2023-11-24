@@ -2,7 +2,7 @@
 import Header from "./Header.vue";
 </script>
 <template>
-    <div class="h-screen w-100 font-body break-words">
+    <div class="h-screen w-100 font-body break-words text-lg">
         <Header class="z-50" />
         <main class="min-h-full w-full flex bg-gray-50">
             <div class="lg:w-1/6 min-h-full" />
