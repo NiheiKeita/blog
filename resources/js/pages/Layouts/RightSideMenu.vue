@@ -1,12 +1,48 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
+import axios from "axios";
+axios
+    .get("/api/tags/")
+    .then((response) => {
+        console.log(response);
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+    .finally(() => {});
+axios
+    .get("/api/blogs/")
+    .then((response) => {
+        console.log(response);
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+    .finally(() => {});
 </script>
+
 <template>
     <div class="w-full h-full p-8 shadow-md rounded-md text-gray-900 bg-Linen">
-        <div><a :href="route('top')">メニュー</a></div>
-        <div><Link :href="route('blog.show', 1)">メニュー1</Link></div>
-        <div><Link :href="route('blog.show', 2)">メニュー2</Link></div>
-        <div class="mb-4">
+        <div>
+            <a :href="route('top')" class="text-blue-500 hover:underline"
+                >メニュー</a
+            >
+        </div>
+        <div>
+            <Link
+                :href="route('blog.show', 1)"
+                class="text-blue-500 hover:underline"
+                >メニュー1</Link
+            >
+        </div>
+        <div>
+            <Link
+                :href="route('blog.show', 2)"
+                class="text-blue-500 hover:underline"
+                >メニュー2</Link
+            >
+        </div>
+        <!-- <div class="mb-4">
             <h2 class="text-xl font-bold mb-2">カテゴリー</h2>
             <ul>
                 <li>
@@ -64,6 +100,6 @@ import { Link } from "@inertiajs/vue3";
                     >@Instagramアカウント</a
                 >
             </div>
-        </div>
+        </div>-->
     </div>
 </template>

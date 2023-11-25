@@ -1,4 +1,5 @@
 <script setup>
+import BlogHead from "@/Components/blog/Head.vue";
 import Layout from "@/Layouts/Layout.vue";
 defineProps({
     hello: String,
@@ -8,6 +9,7 @@ defineProps({
 
 <template>
     <Layout>
+        <BlogHead :blog="blog" :tags="tags" />
         <div class="w-full">
             <h1 class="text-4xl font-bold mb-4">
                 Laravel のrouteをvueで使用する

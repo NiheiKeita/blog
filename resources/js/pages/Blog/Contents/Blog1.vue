@@ -1,6 +1,13 @@
 <script setup>
+import BlogCode from "@/Components/blog/Code.vue";
+import BlogConsole from "@/Components/blog/Console.vue";
+import BlogContent from "@/Components/blog/Content.vue";
+import BlogGoal from "@/Components/blog/Goal.vue";
+import BlogHead from "@/Components/blog/Head.vue";
+import SubTitle from "@/Components/blog/SubTitle.vue";
+import BlogTitle from "@/Components/blog/Title.vue";
+import BlogURL from "@/Components/blog/URL.vue";
 import Layout from "@/Layouts/Layout.vue";
-import { Head } from "@inertiajs/vue3";
 defineProps({
     hello: String,
     blog: Array,
@@ -10,63 +17,96 @@ defineProps({
 
 <template>
     <Layout>
-        <Head>
-            <title>{{ blog.content }}</title>
-            <meta name="description" :content="blog.meta_description" />
-            <meta name="keywords" :content="tags" />
-        </Head>
-        <!-- <Head :title="blog.content" />
-        <meta name="description" content="これはAboutページです" />
-        <meta name="keywords" content="About" /> -->
-        <div class="">
-            <h1 class="text-4xl font-bold mb-4">Laravel DB作成</h1>
-            <div class="mb-6">
-                <p class="mb-2">
-                    目標: DBを作って`blogs`というテーブルを作成する。
-                </p>
-                <p class="mb-2">
-                    作成するカラムは`id`, `created_at`, `updated_at`,
-                    `deleted_at`, `title`, `content`, `tags`。
-                </p>
-                <p class="">
-                    `deleted_at`はソフトデリートを実装するために作成する。
-                </p>
-            </div>
+        <BlogHead :blog="blog" :tags="tags" />
+        <BlogTitle>{{ blog.content }}</BlogTitle>
+        <BlogGoal>
+            目標:
+            DBを作って`blogs`というテーブルを作成して、adminer.phpで確認する。
+        </BlogGoal>
+        <SubTitle>作成するテーブルのカラム</SubTitle>
+        <BlogContent>
+            作成するカラムは<BlogCode>id</BlogCode>
+            <BlogCode>created_at</BlogCode><BlogCode>updated_at</BlogCode>
+            <BlogCode>deleted_at</BlogCode><BlogCode>title</BlogCode>
+            <BlogCode>content</BlogCode>
+            <BlogCode>tags</BlogCode>の７つ。
+        </BlogContent>
 
-            <div class="mb-6">
-                <h2 class="text-2xl font-bold mb-2">Migrationファイル作成</h2>
-                <p class="mb-4">
-                    ターミナルで以下のコマンドを打つ:
-                    <code class="bg-gray-200 p-1"
-                        >php artisan make:migration create_blogs_table</code
-                    ><br />
-                    以下のメッセージが出てきて、`blogs`のマイグレーションファイルができた。<br />
-                    INFO Migration
-                    [C:\xampp\htdocs\blog\blog\database\migrations/2023_11_11_133513_create_blogs_table.php]
-                    created successfully.<br />
-                    `database\migrations`フォルダの中に`2023_11_11_133513_create_blogs_table.php`というファイルができている。
-                </p>
-            </div>
+        <SubTitle>Migrationファイルを作成する</SubTitle>
+        <BlogContent>
+            Migrationファイルを作成するために、ターミナルで以下のコマンドを打つ
+        </BlogContent>
+        <BlogContent>
+            <BlogCode>php artisan make:migration create_blogs_table</BlogCode>
+        </BlogContent>
+        <BlogContent>
+            コマンドに成功すると、以下のメッセージが出てきてblogsテーブルのマイグレーションファイルができる。
+        </BlogContent>
+        <BlogConsole>
+            INFO Migration<br />
+            [C:\xampp\htdocs\blog\blog\database\migrations/2023_11_11_133513_create_blogs_table.php]<br />
+            created successfully.<br />
+        </BlogConsole>
+        <BlogContent>
+            <BlogCode>database\migrations</BlogCode>フォルダの中に
+            <BlogCode>2023_11_11_11111_create_blogs_table.php</BlogCode>
+            のようなファイルができている。
+            <BlogCode>2023_11_11_11111</BlogCode
+            >はコマンドを実行した時間が書かれている。
+        </BlogContent>
 
-            <div class="mb-6">
-                <h2 class="text-2xl font-bold mb-2">テーブル作成</h2>
-                <p class="mb-4">
-                    以下のコマンドを実行すると、テーブルが作成される:
-                    <code class="bg-gray-200 p-1">php artisan migrate</code>
-                </p>
-            </div>
+        <SubTitle>DBとテーブルを作成する</SubTitle>
+        <BlogContent> コンソール上で以下のコマンドを実行する </BlogContent>
+        <BlogContent>
+            <BlogCode>php artisan migrate</BlogCode>
+        </BlogContent>
+        <BlogContent>
+            コマンドに成功すると、DBが作られて作成したマイグレーションファイルが実行されて、`blogテーブル`が作成される。
+        </BlogContent>
 
-            <div class="mb-6">
-                <h2 class="text-2xl font-bold mb-2">Model作成</h2>
-                <p class="mb-4">
-                    以下のコマンドを実行すると、`Blog`モデルが作成される:
-                    <code class="bg-gray-200 p-1"
-                        >php artisan make:model Blog app\Models</code
-                    ><br />
-                    フォルダに`BlogModel`が作成されている。
-                </p>
-            </div>
-        </div>
+        <SubTitle>DBを確認するために、adminer.phpを使用する</SubTitle>
+        <BlogContent>
+            adminer.php1とは、１つのPHPファイルでデータベースを管理することができるツールのこと
+        </BlogContent>
+        <BlogContent>
+            public配下にadminer.phpをダウンロードしてきて設置する。ダウンロードページは以下のURL。
+        </BlogContent>
+        <BlogURL content="https://www.adminer.org/">
+            https://www.adminer.org/
+        </BlogURL>
+        <BlogContent>
+            xamppでは初期設定ではrootのパスワードが設定されていないため、設定する。
+        </BlogContent>
+        <BlogContent>
+            windowsのxammpp配下の<BlogCode>xampp\mysql\bin\</BlogCode>に行き、以下のコマンドを実行する。
+        </BlogContent>
+        <BlogContent>
+            <BlogCode>mysqladmin -u root password</BlogCode>
+        </BlogContent>
+        <BlogContent>
+            実行すると以下のように質問されるため、設定したいパスワードを２回入力する
+        </BlogContent>
+        <BlogConsole>
+            Newpassword: **** <br />
+            Confirm new password: ****
+        </BlogConsole>
+        <BlogContent> .envにも設定したパスワードを入力する </BlogContent>
+        <BlogContent>
+            ブラウザで、<BlogCode>\adminer.php</BlogCode>
+            にアクセスし、.envに書いてある情報を入力するとログインできる
+        </BlogContent>
+        <BlogContent>
+            さっき作成したblogsテーブルがあるから確認できる。作成したカラムがしっかり入っていれば成功。
+        </BlogContent>
+
+        <SubTitle>Modelを作成する</SubTitle>
+        <BlogContent> コンソール上で以下のコマンドを実行する </BlogContent>
+        <BlogContent>
+            <BlogCode>php artisan make:model Blog app\Models</BlogCode>
+        </BlogContent>
+        <BlogContent>
+            コマンドに成功すると、<BlogCode>app\Models</BlogCode>フォルダの中に`BlogModel`が作成されている。
+        </BlogContent>
 
         <!-- laravel DB作成 目標 DBを作ってblogsというテーブルを作成する
         作成するカラムはid,create_at,update_at,delete_at,title,content,tags
