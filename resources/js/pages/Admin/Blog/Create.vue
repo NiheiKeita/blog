@@ -79,6 +79,7 @@ const back = () => {
                         <ButtonDefaultThema
                             class="my-2 mt-10 flex items-center justify-center"
                             msg="作成する"
+                            :isLoading="form.processing"
                             @click="submit"
                         />
                     </div>

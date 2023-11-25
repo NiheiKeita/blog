@@ -1,13 +1,23 @@
 <script setup>
-import Layout from "../../Layouts/Layout.vue";
+import Layout from "@/Layouts/Layout.vue";
+import { Head } from "@inertiajs/vue3";
 defineProps({
     hello: String,
     blog: Array,
+    tags: String,
 });
 </script>
 
 <template>
     <Layout>
+        <Head>
+            <title>{{ blog.content }}</title>
+            <meta name="description" :content="blog.meta_description" />
+            <meta name="keywords" :content="tags" />
+        </Head>
+        <!-- <Head :title="blog.content" />
+        <meta name="description" content="これはAboutページです" />
+        <meta name="keywords" content="About" /> -->
         <div class="">
             <h1 class="text-4xl font-bold mb-4">Laravel DB作成</h1>
             <div class="mb-6">

@@ -13,20 +13,19 @@ class BlogController extends Controller
     private $title = "top";
 
     public function index(Request $request){
-        $title = $this->title;
-        $num = 0;
-        return view('blog.index',compact('title','num'));
+        $blogs = Blog::all();
+        return Inertia::render('Blog/Index', [
+            'blogs' => $blogs,
+        ]);
     }
 
-    public function content(Request $request){
-        $title = $this->title;
-        $num = $request->id;
+    public function show(Request $request){
         $blog = Blog::find($request->id);
-        return Inertia::render('Blog/Contents/Blog'.$num, [
+        $tags = \Common::get_tag_names($blog->tags);
+        return Inertia::render('Blog/Contents/Blog'.$blog->id, [
             'blog' => $blog,
+            'tags' => $tags,
         ]);
-
-        // return view('blog.content',compact('title','num','blog'));
     }
 
 }

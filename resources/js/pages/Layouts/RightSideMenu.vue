@@ -4,8 +4,8 @@ import { Link } from "@inertiajs/vue3";
 <template>
     <div class="w-full h-full p-8 shadow-md rounded-md text-gray-900 bg-Linen">
         <div><a :href="route('top')">メニュー</a></div>
-        <div><Link :href="route('blog.content', 1)">メニュー1</Link></div>
-        <div><Link :href="route('blog.content', 2)">メニュー2</Link></div>
+        <div><Link :href="route('blog.show', 1)">メニュー1</Link></div>
+        <div><Link :href="route('blog.show', 2)">メニュー2</Link></div>
         <div class="mb-4">
             <h2 class="text-xl font-bold mb-2">カテゴリー</h2>
             <ul>

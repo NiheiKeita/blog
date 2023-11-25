@@ -7,7 +7,7 @@
             <p
                 class="flex items-center justify-center text-2xl font-bold text-black"
             >
-                管理画面
+                暇なエンジニア管理画面
             </p>
         </div>
         <div class="flex items-center justify-center">

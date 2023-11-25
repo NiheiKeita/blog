@@ -7,7 +7,7 @@
             <p
                 class="flex items-center justify-center text-2xl font-bold text-black"
             >
-                ブログ
+                暇なエンジニア
             </p>
         </div>
         <div class="flex items-center justify-center">

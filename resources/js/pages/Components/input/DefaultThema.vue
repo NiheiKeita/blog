@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ErrorDefaultThema from "@/Components/error/DefaultThema.vue";
 defineProps({
     name: {
         type: String,
@@ -29,7 +30,7 @@ const onInputText = (e: Event) => {
 </script>
 
 <template>
-    <div>
+    <div class="w-full">
         <div class="flex w-full items-center">
             <input
                 class="w-full rounded-md border border-gray-400 p-2 outline-blue-200 focus:outline focus:outline-4"
@@ -39,17 +40,10 @@ const onInputText = (e: Event) => {
                 @input="onInputText"
             />
         </div>
-        <div
-            v-if="error"
-            class="text-red-700 mt-1 rounded text-base flex items-center"
-        >
-            <img
-                class="h-5 w-5 flex justify-center text-center"
-                src="/imgs/exclamation_mark.svg"
-            />
-            <p class="ms-1">
-                {{ error }}
-            </p>
-        </div>
+        <ErrorDefaultThema
+            class="mt-1"
+            v-show="error"
+            :error="error"
+        ></ErrorDefaultThema>
     </div>
 </template>

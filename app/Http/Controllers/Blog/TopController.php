@@ -11,11 +11,12 @@ class TopController extends Controller
     private $title = "top";
 
     public function index(Request $request){
-        $num = 0;
-        $hello = 'Hello World from Inertia';
-        return Inertia::render('Contents/Index'.$num, [
-            'hello' => $hello,
-        ]);
+        return redirect()->route('blog.index');
+        // $num = 0;
+        // $hello = 'Hello World from Inertia';
+        // return Inertia::render('Contents/Index'.$num, [
+        //     'hello' => $hello,
+        // ]);
     }
 }
 

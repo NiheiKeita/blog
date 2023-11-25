@@ -81,6 +81,7 @@ const back = () => {
                             class="my-2 mt-10 flex items-center justify-center"
                             msg="更新する"
                             @click="submit"
+                            :isLoading="form.processing"
                         />
                     </div>
                 </div>

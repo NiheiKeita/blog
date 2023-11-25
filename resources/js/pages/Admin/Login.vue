@@ -1,6 +1,7 @@
 <script setup>
 import Layout from "@/Admin/Layouts/Layout.vue";
 import ButtonDefaultThema from "@/Components/button/DefaultThema.vue";
+import ErrorDefaultThema from "@/Components/error/DefaultThema.vue";
 import InputDefaultThema from "@/Components/input/DefaultThema.vue";
 import { useForm } from "@inertiajs/vue3";
 import { ref } from "vue";
@@ -31,42 +32,34 @@ const submit = () => {
             </div>
             <div class="flex items-center justify-center">
                 <div class="w-1/3">
-                    <div>メールアドレス</div>
-                    <div class="mt-5 flex items-center justify-center">
-                        <InputDefaultThema v-model="emailRef" name="email" />
+                    <div class="mt-5">メールアドレス</div>
+                    <div class="mt-2 flex items-center justify-center">
+                        <InputDefaultThema
+                            v-model="emailRef"
+                            name="email"
+                            :error="errors.email"
+                        />
                     </div>
-                    <div>パスワード</div>
-                    <div class="mt-5 flex items-center justify-center">
+                    <div class="mt-5">パスワード</div>
+                    <div class="mt-2 flex items-center justify-center">
                         <InputDefaultThema
                             v-model="passwordRef"
                             type="password"
                             name="password"
+                            :error="errors.password"
                         />
                     </div>
                     <ButtonDefaultThema
                         class="my-2 mt-10"
                         msg="ログインする"
+                        :isLoading="form.processing"
                         @click="submit"
                     />
-                    <div>
-                        {{ errors }}
-                    </div>
-                    <div>
-                        {{ form }}
-                    </div>
-                    <!-- <form
-                        @submit.prevent="form.post(route('admin.login.check'))"
-                    >
-                        <button type="submit" :disabled="form.processing">
-                            Login
-                        </button>
-                        <div v-if="form">
-                            {{ form }}
-                        </div>
-                        <div>
-                            {{ errors }}
-                        </div>
-                    </form> -->
+                    <ErrorDefaultThema
+                        class="mt-3"
+                        v-show="errors.login"
+                        :error="errors.login"
+                    ></ErrorDefaultThema>
                 </div>
             </div>
         </div>
