@@ -13,9 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::namespace('App\Http\Controllers\Blog')->prefix('blogs')->name('blog.')->group(function () {
-    Route::match(['get', 'post'], '/', 'BlogController@index')->name('index');
-    Route::match(['get', 'post'], '/{id}', 'BlogController@show')->name('show');
+Route::namespace('App\Http\Controllers\Blog')->group(function () {
+    Route::prefix('blogs')->name('blog.')->group(function () {
+        Route::match(['get', 'post'], '/', 'BlogController@index')->name('index');
+        Route::match(['get', 'post'], '/{id}', 'BlogController@show')->name('show');
+    });
+
+    Route::prefix('tags')->name('tag.')->group(function () {
+        Route::match(['get', 'post'], '/', 'TagController@index')->name('index');
+        Route::match(['get', 'post'], '/{id}', 'TagController@show')->name('show');
+    });
 });
 Route::namespace('App\Http\Controllers\Blog')->group(function () {
     Route::match(['get', 'post'], '/', 'TopController@index')->name('top');
@@ -42,4 +49,10 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->name('admin.')-
             Route::delete( '/blogs/{id}', 'BlogController@delete')->name('delete');
         });
     });
+});
+
+//API
+Route::namespace('App\Http\Controllers\API')->prefix('api')->name('api.')->group(function () {
+    Route::get( '/blogs', 'BlogController@index')->name('blog.index');
+    Route::get( '/tags', 'TagController@index')->name('tag.index');
 });

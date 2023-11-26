@@ -1,10 +1,14 @@
 <script setup>
-import { Link } from "@inertiajs/vue3";
 import axios from "axios";
+import { ref } from "vue";
+
+const tagsRef = ref();
+const blogsRef = ref();
 axios
     .get("/api/tags/")
     .then((response) => {
         console.log(response);
+        tagsRef.value = response.data;
     })
     .catch((error) => {
         console.log(error);
@@ -14,6 +18,7 @@ axios
     .get("/api/blogs/")
     .then((response) => {
         console.log(response);
+        blogsRef.value = response.data;
     })
     .catch((error) => {
         console.log(error);
@@ -23,12 +28,23 @@ axios
 
 <template>
     <div class="w-full h-full p-8 shadow-md rounded-md text-gray-900 bg-Linen">
-        <div>
-            <a :href="route('top')" class="text-blue-500 hover:underline"
-                >メニュー</a
+        <h2 class="text-xl font-bold mb-2" v-if="blogsRef">記事</h2>
+        <div v-for="(blog, i) in blogsRef" :key="i">
+            <a
+                :href="route('blog.show', blog.id)"
+                class="text-blue-500 hover:underline"
+                >{{ blog.content }}</a
             >
         </div>
-        <div>
+        <h2 class="text-xl font-bold mb-2 mt-10" v-if="tagsRef">タグ</h2>
+        <div v-for="(tag, i) in tagsRef" :key="i">
+            <a
+                :href="route('tag.show', tag.id)"
+                class="text-blue-500 hover:underline"
+                >{{ tag.name }}</a
+            >
+        </div>
+        <!-- <div>
             <Link
                 :href="route('blog.show', 1)"
                 class="text-blue-500 hover:underline"
@@ -41,7 +57,7 @@ axios
                 class="text-blue-500 hover:underline"
                 >メニュー2</Link
             >
-        </div>
+        </div> -->
         <!-- <div class="mb-4">
             <h2 class="text-xl font-bold mb-2">カテゴリー</h2>
             <ul>
