@@ -30,19 +30,25 @@ axios
     <div class="w-full h-full p-8 shadow-md rounded-md text-gray-900 bg-Linen">
         <h2 class="text-xl font-bold mb-2" v-if="blogsRef">記事</h2>
         <div v-for="(blog, i) in blogsRef" :key="i">
-            <a
-                :href="route('blog.show', blog.id)"
-                class="text-blue-500 hover:underline"
-                >{{ blog.content }}</a
-            >
+            <div class="flex justify-start">
+                <div>・</div>
+                <a
+                    :href="route('blog.show', blog.id)"
+                    class="text-blue-500 hover:underline"
+                    >{{ blog.content }}</a
+                >
+            </div>
         </div>
         <h2 class="text-xl font-bold mb-2 mt-10" v-if="tagsRef">タグ</h2>
         <div v-for="(tag, i) in tagsRef" :key="i">
-            <a
-                :href="route('tag.show', tag.id)"
-                class="text-blue-500 hover:underline"
-                >{{ tag.name }}</a
-            >
+            <div class="flex justify-start">
+                <div>・</div>
+                <a
+                    :href="route('tag.show', tag.id)"
+                    class="text-blue-500 hover:underline"
+                    >{{ tag.name }}</a
+                >
+            </div>
         </div>
         <!-- <div>
             <Link

@@ -11,7 +11,12 @@ const transition = () => {
     <Layout>
         <div class="">
             <div
-                class="mt-10 flex items-center justify-center text-3xl font-bold"
+                class="mt-5 flex items-center justify-center text-3xl font-bold"
+            >
+                <p>{{ tag.name }}タグ</p>
+            </div>
+            <div
+                class="mt-5 flex items-center justify-center text-2xl font-bold"
             >
                 <p>ブログ一覧</p>
             </div>

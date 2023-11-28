@@ -1,0 +1,1 @@
+import{_ as o}from"./_plugin-vue_export-helper-c27b6911.js";import{d as e,o as t}from"./app-b278ce3c.js";const r={},c={class:"h-20"};function s(n,_){return t(),e("footer",c)}const m=o(r,[["render",s]]);export{m as default};

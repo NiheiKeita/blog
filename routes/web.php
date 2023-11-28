@@ -52,7 +52,7 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->name('admin.')-
 });
 
 //API
-Route::namespace('App\Http\Controllers\API')->prefix('api')->name('api.')->group(function () {
+Route::namespace('App\Http\Controllers\Api')->prefix('api')->name('api.')->group(function () {
     Route::get( '/blogs', 'BlogController@index')->name('blog.index');
     Route::get( '/tags', 'TagController@index')->name('tag.index');
 });

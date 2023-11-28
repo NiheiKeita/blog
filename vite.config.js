@@ -22,4 +22,9 @@ export default defineConfig({
             "@": "/resources/js/pages",
         },
     },
+    // server: {
+    //     hmr: {
+    //         host: "localhost",
+    //     },
+    // },
 });

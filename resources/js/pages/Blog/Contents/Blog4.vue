@@ -24,4 +24,7 @@ defineProps({
             </p>
         </div>
     </Layout>
+
+    以下のコマンドを実行すると、/でlaravelが開けるようになる ln -s
+    /home/*****/blog/blog/public/ /home//*****///*****/.xsrv.jp/public_html
 </template>
