@@ -14,8 +14,11 @@ defineProps({
 
 <template>
     <Head>
-        <title>{{ blog.content }}</title>
-        <meta name="description" :content="blog.meta_description" />
+        <title>暇なエンジニア｜{{ blog.content }}</title>
+        <meta
+            name="description"
+            :content="'暇なエンジニア｜' + blog.meta_description"
+        />
         <meta name="keywords" :content="tags" />
     </Head>
 </template>

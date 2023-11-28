@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}}
     <!-- Fetch project name dynamically -->
-    <title inertia>{{ config('app.name', 'Blog') }}</title>
+    <title inertia>{{ config('app.name', '暇なエンジニア') }}</title>
 
     <!-- Scripts -->
     @vite('resources/js/app.js') @inertiaHead  @routes

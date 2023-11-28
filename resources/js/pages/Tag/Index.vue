@@ -9,6 +9,10 @@ const transition = () => {
 
 <template>
     <Layout>
+        <Head>
+            <title>暇なエンジニア｜タグ一覧</title>
+            <meta name="description" content="暇なエンジニア｜タグ一覧" />
+        </Head>
         <div class="">
             <div
                 class="mt-10 flex items-center justify-center text-3xl font-bold"

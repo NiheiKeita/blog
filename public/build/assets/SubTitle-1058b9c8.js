@@ -1,0 +1,1 @@
+import{d as e,h as s,a as o,o as a}from"./app-c7f91c79.js";const l={class:"text-2xl font-bold mb-5 mt-12"},n=o("div",{class:"bg-gray-200 h-[1px] w-full mt-1"},null,-1),d={name:"SubTitle",props:{content:{type:String,default:"input_display"}},setup(r){return(t,c)=>(a(),e("h2",l,[s(t.$slots,"default"),n]))}};export{d as default};

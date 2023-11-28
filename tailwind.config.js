@@ -8,7 +8,8 @@ export default {
     theme: {
         extend: {
             colors: {
-                ThemaColor: "#CCCC99",
+                // ThemaColor: "#CCCC99",
+                ThemaColor: "#3679FF",
                 Linen: "#FBECEC",
                 ThemaColorComplementary: "#5badff",
                 ThemaColorInversion: "#0052a4",

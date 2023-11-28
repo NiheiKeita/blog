@@ -1,1 +1,0 @@
-import{d as t,a as s,h as o,o as a}from"./app-c6d84f30.js";const n={class:"bg-black text-white rounded-sm p-3 mb-5"},c={class:"p-1 mx-1"},p={name:"Console",props:{content:{type:String,default:"input_display"}},setup(r){return(e,d)=>(a(),t("div",n,[s("code",c,[o(e.$slots,"default")])]))}};export{p as default};

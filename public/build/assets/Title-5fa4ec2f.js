@@ -1,0 +1,1 @@
+import{d as e,h as o,o as s}from"./app-c7f91c79.js";const n={class:"text-4xl font-bold mb-2"},p={name:"Title",props:{content:{type:String,default:"input_display"}},setup(a){return(t,l)=>(s(),e("h1",n,[o(t.$slots,"default")]))}};export{p as default};
