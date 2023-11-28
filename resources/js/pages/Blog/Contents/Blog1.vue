@@ -5,6 +5,7 @@ import BlogContent from "@/Components/blog/Content.vue";
 import BlogGoal from "@/Components/blog/Goal.vue";
 import BlogHead from "@/Components/blog/Head.vue";
 import SubTitle from "@/Components/blog/SubTitle.vue";
+import BlogTags from "@/Components/blog/Tags.vue";
 import BlogTitle from "@/Components/blog/Title.vue";
 import BlogURL from "@/Components/blog/URL.vue";
 import Layout from "@/Layouts/Layout.vue";
@@ -19,6 +20,7 @@ defineProps({
     <Layout>
         <BlogHead :blog="blog" :tags="tags" />
         <BlogTitle>{{ blog.content }}</BlogTitle>
+        <BlogTags :tags="blog.tags" />
         <BlogGoal>
             目標:
             DBを作って`blogs`というテーブルを作成して、adminer.phpで確認する。

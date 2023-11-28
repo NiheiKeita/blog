@@ -1,0 +1,1 @@
+import{d as n,h as o,o as r}from"./app-c6d84f30.js";const s=["href"],l={name:"URL",props:{content:{type:String,default:""}},setup(e){return(t,a)=>(r(),n("a",{href:e.content,class:"text-blue-500 hover:underline"},[o(t.$slots,"default")],8,s))}};export{l as default};

@@ -14,7 +14,7 @@ import RightSideMenu from "@/Layouts/RightSideMenu.vue";
                 >
                     <slot />
                 </div>
-                <div class="lg:w-1/4 w-0 min-h-full ml-3">
+                <div class="lg:w-1/4 w-0 min-h-full ml-3 lg:block hidden">
                     <RightSideMenu />
                 </div>
             </div>

@@ -1,0 +1,1 @@
+import{d as s,a as t,h as o,o as a}from"./app-c6d84f30.js";const n={class:"mb-6"},p={class:"bg-yellow-200 px-2 py-1 rounded"},d={name:"Goal",props:{content:{type:String,default:"input_display"}},setup(r){return(e,l)=>(a(),s("p",n,[t("span",p,[o(e.$slots,"default")])]))}};export{d as default};
