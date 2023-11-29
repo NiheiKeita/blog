@@ -31,7 +31,7 @@ const submit = () => {
                 <p>ログイン</p>
             </div>
             <div class="flex items-center justify-center">
-                <div class="w-1/3">
+                <div class="lg:w-1/3 w-full mx-5">
                     <div class="mt-5">メールアドレス</div>
                     <div class="mt-2 flex items-center justify-center">
                         <InputDefaultThema

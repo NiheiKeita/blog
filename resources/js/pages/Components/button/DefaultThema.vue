@@ -31,7 +31,6 @@ const clickEvent = () => {
                     v-if="!isLoading"
                 >
                     {{ msg }}
-                    {{ isLoading }}
                 </p>
                 <div
                     className="flex justify-center mt-1"
@@ -39,7 +38,7 @@ const clickEvent = () => {
                     v-if="isLoading"
                 >
                     <div
-                        className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent"
+                        className="my-1 animate-spin h-8 w-8 border-4 border-blue-300 rounded-full border-t-transparent"
                     ></div>
                 </div>
             </div>

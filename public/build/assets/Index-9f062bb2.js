@@ -1,1 +1,0 @@
-import{d as s,b as t,a as e,o as a,j as n}from"./app-c7f91c79.js";const d={class:"font-body"},c=e("div",{class:"fixed inset-0 -z-10 bg-gray-50 md:mx-[20%]"},null,-1),r=e("div",null,[e("div"),e("div"),e("div")],-1),m={name:"Index",props:{hello:String},setup(i){return(l,_)=>{const o=n("Header");return a(),s("div",d,[c,t(o,{class:"z-50"}),r])}}};export{m as default};

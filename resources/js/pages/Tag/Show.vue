@@ -10,14 +10,17 @@ const transition = () => {
 <template>
     <Layout>
         <Head>
-            <title>暇なエンジニア｜{{ tag.name }}</title>
-            <meta name="description" :content="'暇なエンジニア｜' + tag.name" />
+            <title>暇なエンジニア｜{{ tag?.name }}</title>
+            <meta
+                name="description"
+                :content="'暇なエンジニア｜' + tag?.name"
+            />
         </Head>
         <div class="">
             <div
                 class="mt-5 flex items-center justify-center text-3xl font-bold"
             >
-                <p>{{ tag.name }}タグ</p>
+                <p>{{ tag?.name }}タグ</p>
             </div>
             <div
                 class="mt-5 flex items-center justify-center text-2xl font-bold"
@@ -31,11 +34,11 @@ const transition = () => {
                     class="rounded shadow-md border-b p-4 m-2 bg-white"
                 >
                     <Link
-                        :href="route('blog.show', blog.id)"
+                        :href="route('blog.show', blog?.id)"
                         class="flex justify-between"
                     >
                         <p class="text-blue-500 hover:underline">
-                            {{ blog.content }}
+                            {{ blog?.content }}
                         </p>
                     </Link>
                 </li>

@@ -20,7 +20,10 @@ class TagController extends Controller
 
     public function show(Request $request){
         $tag = Tag::find($request->id);
-        $blogs = $tag->blogs;
+        if(empty($tag)){
+            abort(404);
+        }
+        $blogs = $tag->blogs ?? null;
         return Inertia::render('Tag/Show', [
             'blogs' => $blogs,
             'tag' => $tag,

@@ -21,7 +21,10 @@ class BlogController extends Controller
 
     public function show(Request $request){
         $blog = Blog::find($request->id);
-        $tags = \Common::get_tag_names($blog->tags);
+        if(empty($blog)){
+            abort(404);
+        }
+        $tags = \Common::get_tag_names($blog->tags ?? null);
         return Inertia::render('Blog/Contents/Blog'.$blog->id, [
             'blog' => $blog,
             'tags' => $tags,

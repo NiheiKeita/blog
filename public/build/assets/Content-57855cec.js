@@ -1,1 +1,0 @@
-import{d as t,a as s,h as a,o}from"./app-c7f91c79.js";const n={class:"mb-5"},c={name:"Content",props:{content:{type:String,default:"input_display"}},setup(r){return(e,l)=>(o(),t("div",n,[s("p",null,[a(e.$slots,"default")])]))}};export{c as default};
