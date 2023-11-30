@@ -1,5 +1,5 @@
 <script setup>
-import Header from "./Header.vue";
+import Header from "@/Admin/Layouts/Header.vue";
 </script>
 <template>
     <div class="h-screen w-100 font-body break-words text-lg">
