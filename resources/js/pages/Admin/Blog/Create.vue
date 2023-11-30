@@ -42,7 +42,7 @@ const contents = ref([
         id: 2,
         block_id: 2,
         content: "",
-        com: [
+        components: [
             {
                 id: 1,
                 component_id: 1,
@@ -86,25 +86,53 @@ const back = () => {
 };
 
 const change = (value, block_id, component_id = "") => {
-    console.log(value);
-    console.log(block_id);
-    console.log(component_id);
     var content = null;
     if (component_id == "") {
         content = contents.value.find((element) => element.id == block_id);
     } else {
         content = contents.value
             .find((element) => element.id == block_id)
-            .com.find((element) => element.id == component_id);
+            .components.find((element) => element.id == component_id);
     }
+
     content.content = value;
-    console.log(contents.value);
 };
 const addBlock = (block_id) => {
-    console.log(block_id);
+    //TODO(popupで処理追加)
+    var ids = contents.value.map(function (data) {
+        return data.id;
+    });
+    var addBlock = {
+        id: Math.max.apply(null, ids) + 1,
+        block_id: 5,
+        content: "",
+    };
+    contents.value.splice(
+        contents.value.findIndex((element) => element.id == block_id) + 1,
+        0,
+        addBlock
+    );
 };
-const addComponent = (block_id) => {
-    console.log(block_id);
+const addComponent = (block_id, component_id) => {
+    //TODO(popupで処理追加)
+    var component = contents.value.find(
+        (element) => element.id == block_id
+    ).components;
+    var ids = component.map(function (data) {
+        return data.id;
+    });
+    var addComponent = {
+        id: Math.max.apply(null, ids) + 1,
+        component_id: 1,
+        content: "",
+    };
+    contents.value
+        .find((element) => element.id == block_id)
+        .components.splice(
+            component.findIndex((element) => element.id == component_id) + 1,
+            0,
+            addComponent
+        );
 };
 </script>
 
@@ -142,25 +170,27 @@ const addComponent = (block_id) => {
                             @click="addBlock(content.id)"
                         >
                             <template
-                                v-for="(compo, j) in content.com"
+                                v-for="(component, j) in content.components"
                                 :key="j"
                             >
                                 <BlogP
                                     class="inline-block"
-                                    v-if="compo.component_id == 1"
-                                    @click="addComponent(compo.id)"
+                                    v-if="component.component_id == 1"
+                                    @click="
+                                        addComponent(content.id, component.id)
+                                    "
                                 >
                                     <input
                                         @input="
                                             change(
                                                 $event.target.value,
                                                 content.id,
-                                                compo.id
+                                                component.id
                                             )
                                         "
                                         type="text"
                                         class="bg-transparent inline-block whitespace-pre w-auto outline-none"
-                                        :value="compo.content"
+                                        :value="component.content"
                                         v-autowidth="{
                                             maxWidth: '100%',
                                             minWidth: '10px',
@@ -169,25 +199,29 @@ const addComponent = (block_id) => {
                                     />
                                 </BlogP>
                                 <BlogBr
-                                    v-if="compo.component_id == 3"
-                                    @click="addComponent(compo.id)"
+                                    v-if="component.component_id == 3"
+                                    @click="
+                                        addComponent(content.id, component.id)
+                                    "
                                 />
                                 <BlogCode
                                     class="inline-block"
-                                    v-if="compo.component_id == 2"
-                                    @click="addComponent(compo.id)"
+                                    v-if="component.component_id == 2"
+                                    @click="
+                                        addComponent(content.id, component.id)
+                                    "
                                 >
                                     <input
                                         @input="
                                             change(
                                                 $event.target.value,
                                                 content.id,
-                                                compo.id
+                                                component.id
                                             )
                                         "
                                         type="text"
                                         class="bg-transparent inline-block whitespace-pre w-auto outline-none"
-                                        :value="compo.content"
+                                        :value="component.content"
                                         v-autowidth="{
                                             maxWidth: '100%',
                                             minWidth: '10px',
@@ -206,11 +240,6 @@ const addComponent = (block_id) => {
                                 type="text"
                                 class="bg-transparent inline-block whitespace-pre w-auto outline-none"
                                 :value="content.content"
-                                v-autowidth="{
-                                    maxWidth: '100%',
-                                    minWidth: '10px',
-                                    comfortZone: 0,
-                                }"
                             />
                         </SubTitle>
                         <BlogConsole
@@ -233,11 +262,6 @@ const addComponent = (block_id) => {
                                 type="text"
                                 class="bg-transparent inline-block whitespace-pre w-auto outline-none"
                                 :value="content.content"
-                                v-autowidth="{
-                                    maxWidth: '100%',
-                                    minWidth: '10px',
-                                    comfortZone: 0,
-                                }"
                             />
                         </BlogURL>
                     </template>

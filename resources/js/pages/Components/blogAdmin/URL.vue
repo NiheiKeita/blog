@@ -9,7 +9,7 @@ const clickEvent = () => {
 
 <template>
     <div>
-        <div class="text-blue-500 hover:underline">
+        <div class="text-blue-500 hover:underline border border-gray-200">
             <slot />
         </div>
     </div>

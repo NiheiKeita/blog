@@ -1,5 +1,5 @@
 <script setup>
-import BloCode from "@/Components/blog/Code.vue";
+import BlogCode from "@/Components/blog/Code.vue";
 import ButtonPlus from "@/Components/button/Plus.vue";
 const props = defineProps({
     content: {
@@ -15,5 +15,5 @@ const clickEvent = () => {
 </script>
 
 <template>
-    <BloCode><slot /></BloCode><ButtonPlus @click="clickEvent" color="red" />
+    <BlogCode><slot /></BlogCode><ButtonPlus @click="clickEvent" color="red" />
 </template>

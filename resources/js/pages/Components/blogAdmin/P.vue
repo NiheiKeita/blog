@@ -8,8 +8,11 @@ const clickEvent = () => {
 </script>
 
 <template>
-    <p>
+    <code class="border border-gray-200 p-1 mx-1"><slot /></code>
+    <!-- <p>
         <slot />
+
         <ButtonPlus @click="clickEvent" color="red" />
-    </p>
+    </p> -->
+    <ButtonPlus @click="clickEvent" color="red" />
 </template>
