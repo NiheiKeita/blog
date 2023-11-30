@@ -8,7 +8,6 @@ defineProps({
 const emit = defineEmits(["click"]);
 
 const clickEvent = () => {
-    console.log("ckick"); // eslint-disable-line no-console
     emit("click");
 };
 </script>

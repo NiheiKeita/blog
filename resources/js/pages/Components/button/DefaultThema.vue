@@ -15,7 +15,6 @@ const clickEvent = () => {
     if (props.isLoading) {
         return;
     }
-    console.log("ckick"); // eslint-disable-line no-console
     emit("click");
 };
 </script>

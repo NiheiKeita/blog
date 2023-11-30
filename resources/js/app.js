@@ -4,6 +4,7 @@ import "./bootstrap";
 import { createInertiaApp } from "@inertiajs/vue3";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { createApp, h } from "vue";
+import { plugin as VueInputAutowidth } from "vue-input-autowidth";
 
 createInertiaApp({
     // title: (title) => `${title} - ${appName}`,
@@ -15,6 +16,7 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         return createApp({ render: () => h(App, props) })
             .use(plugin)
+            .use(VueInputAutowidth)
             .mixin({ methods: { route } })
             .mount(el);
     },
