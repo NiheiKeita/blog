@@ -17,7 +17,8 @@ return new class extends Migration
             $table->softDeletes();
             $table->foreignId('blog_block_id');
             $table->foreignId('component_id');
-            $table->integer('sort_by');
+            $table->integer('sort_by')->nullable();
+            $table->text('content')->nullable();
         });
     }
 

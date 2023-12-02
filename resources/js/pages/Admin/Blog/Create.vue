@@ -33,7 +33,7 @@ const submit = () => {
     form.meta_title = metaTitleRef.value;
     form.meta_description = metaDescriptionRef.value;
     form.tags = tagsRef.value;
-    form.blocks = tagsRef.value;
+    form.blocks = blocksRef.value;
 
     form.post(route("admin.blog.store"));
 };

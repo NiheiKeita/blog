@@ -5,22 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Blog extends Model
+class BlogComponent extends Model
 {
     use HasFactory,SoftDeletes;
+
     protected $guarded = [
         "id"
     ];
-
-    public function tags():BelongsToMany
+    public function component()
     {
-        return $this->belongsToMany(Tag::class, 'blog_tags');
+        return $this->belongsTo(Component::class);
     }
-    public function blog_blocks()
+    public function blog_block()
     {
-        return $this->hasMany(BlogBlock::class);
+        return $this->belongsTo(Blog::class);
     }
 }
-

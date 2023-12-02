@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Blog;
 use App\Models\Tag;
+use App\Models\BlogBlock;
+use App\Models\BlogComponent;
+use App\Models\Block;
+use App\Models\Component;
 use App\Http\Requests\Admin\BlogCreateRequest;
 use Illuminate\Support\Facades\Auth;
 use Hash;
@@ -41,6 +45,8 @@ class BlogController extends Controller
             'meta_description' => $request->meta_description,
         ]);
         $blog->tags()->attach(\Common::get_tag_ids($tags));
+        $this->storeBlocks($request->blocks,$blog);
+        // dd($blog->blog_blocks);
         return redirect()->route('admin.blog.index');
     }
 
@@ -57,7 +63,8 @@ class BlogController extends Controller
     }
 
     public function show(Request $request){
-        $blog = Blog::find($request->id);
+        // $blog = Blog::find($request->id);
+        $blog = Blog::where('id',$request->id)->with(['blog_blocks.blog_components'])->first();
         $tags = \Common::get_tag_names($blog->tags);
         return Inertia::render('Admin/Blog/Show', [
             'blog' => $blog,
@@ -68,5 +75,28 @@ class BlogController extends Controller
     public function delete(){
         return redirect()->route('admin.blog.index');
     }
+
+    public function storeBlocks($blocks,$blog){
+        foreach ($blocks as $block){
+            $blogBlock = $blog->blog_blocks()->create([
+                'blog_id' => $blog->id,
+                'block_id' => $block["block_id"],
+                'sort_by' => 0,
+                'content' => $block["content"],
+            ]);
+            if($blogBlock->block_id == 2){
+                foreach ($block["components"] as $component){
+                    $blogBlock->blog_components()->create([
+                        'blog_block_id' => $blogBlock->id,
+                        'component_id' => $component["component_id"],
+                        'sort_by' => 0,
+                        'content' => $component["content"],
+                    ]);
+                }
+            }
+        }
+
+    }
+
 }
 

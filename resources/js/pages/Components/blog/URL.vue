@@ -7,8 +7,8 @@ const props = defineProps({
 });
 </script>
 
-<template class="mb-5">
-    <div>
+<template>
+    <div class="mb-5">
         <a :href="content" class="text-blue-500 hover:underline"><slot /> </a>
     </div>
 </template>

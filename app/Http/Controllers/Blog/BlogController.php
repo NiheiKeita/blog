@@ -20,15 +20,20 @@ class BlogController extends Controller
     }
 
     public function show(Request $request){
-        $blog = Blog::find($request->id);
+        $blog = Blog::where('id',$request->id)->with(['blog_blocks.blog_components'])->first();
+        // $blog = Blog::find($request->id);
         if(empty($blog)){
             abort(404);
         }
         $tags = \Common::get_tag_names($blog->tags ?? null);
-        return Inertia::render('Blog/Contents/Blog'.$blog->id, [
+        return Inertia::render('Blog/Blog', [
             'blog' => $blog,
             'tags' => $tags,
         ]);
+        // return Inertia::render('Blog/Contents/Blog'.$blog->id, [
+        //     'blog' => $blog,
+        //     'tags' => $tags,
+        // ]);
     }
 
 }
