@@ -18,6 +18,18 @@ import { ref } from "vue";
 
 defineProps({ errors: Object });
 
+const blockType = [
+    { option_id: 1, label: "BlogGoal" },
+    { option_id: 2, label: "文章" },
+    { option_id: 3, label: "SubTitle" },
+    { option_id: 4, label: "BlogConsole" },
+    { option_id: 5, label: "BlogURL" },
+];
+const componentType = [
+    { option_id: 1, label: "BlogP" },
+    { option_id: 2, label: "BlogCode" },
+    { option_id: 3, label: "BlogBr" },
+];
 const contentRef = ref("");
 const metaTitleRef = ref("");
 const metaDescriptionRef = ref("");
@@ -68,6 +80,7 @@ const change = (value, block_id, component_id = "") => {
 };
 
 //POPUP系
+//追加関係
 const blockSeletModalopen = (block_id) => {
     selectBlock.value = block_id;
     blockSeletModalopenRef.value = true;
@@ -146,18 +159,31 @@ const addComponent = (component_id) => {
         );
     componentSeletModalclose();
 };
-const blockType = [
-    { option_id: 1, label: "BlogGoal" },
-    { option_id: 2, label: "文章" },
-    { option_id: 3, label: "SubTitle" },
-    { option_id: 4, label: "BlogConsole" },
-    { option_id: 5, label: "BlogURL" },
-];
-const componentType = [
-    { option_id: 1, label: "BlogP" },
-    { option_id: 2, label: "BlogCode" },
-    { option_id: 3, label: "BlogBr" },
-];
+
+//削除関係
+const deleteBlock = (block_id) => {
+    if (blocksRef.value.length <= 1) {
+        return;
+    }
+    blocksRef.value.splice(
+        blocksRef.value.findIndex((element) => element.id == block_id),
+        1
+    );
+};
+const componentDelete = (block_id, component_id) => {
+    var component = blocksRef.value.find(
+        (element) => element.id == block_id
+    ).components;
+    if (component.length <= 1) {
+        return;
+    }
+    blocksRef.value
+        .find((element) => element.id == block_id)
+        .components.splice(
+            component.findIndex((element) => element.id == component_id),
+            1
+        );
+};
 </script>
 
 <template>
@@ -212,6 +238,7 @@ const componentType = [
                         <BlogGoal
                             v-if="content.block_id == 1"
                             @click="blockSeletModalopen(content.id)"
+                            @delete="deleteBlock(content.id)"
                         >
                             <input
                                 @input="change($event.target.value, content.id)"
@@ -228,6 +255,7 @@ const componentType = [
                         <BlogContent
                             v-if="content.block_id == 2"
                             @click="blockSeletModalopen(content.id)"
+                            @delete="deleteBlock(content.id)"
                         >
                             <template
                                 v-for="(component, j) in content.components"
@@ -238,6 +266,12 @@ const componentType = [
                                     v-if="component.component_id == 1"
                                     @click="
                                         componentSeletModalopen(
+                                            content.id,
+                                            component.id
+                                        )
+                                    "
+                                    @delete="
+                                        componentDelete(
                                             content.id,
                                             component.id
                                         )
@@ -269,12 +303,24 @@ const componentType = [
                                             component.id
                                         )
                                     "
+                                    @delete="
+                                        componentDelete(
+                                            content.id,
+                                            component.id
+                                        )
+                                    "
                                 />
                                 <BlogCode
                                     class="inline-block"
                                     v-if="component.component_id == 2"
                                     @click="
                                         componentSeletModalopen(
+                                            content.id,
+                                            component.id
+                                        )
+                                    "
+                                    @delete="
+                                        componentDelete(
                                             content.id,
                                             component.id
                                         )
@@ -303,33 +349,37 @@ const componentType = [
                         <SubTitle
                             v-if="content.block_id == 3"
                             @click="blockSeletModalopen(content.id)"
+                            @delete="deleteBlock(content.id)"
                         >
                             <input
                                 @input="change($event.target.value, content.id)"
                                 type="text"
-                                class="bg-transparent inline-block whitespace-pre w-auto outline-none"
+                                class="bg-transparent inline-block whitespace-pre w-full outline-none"
                                 :value="content.content"
                             />
                         </SubTitle>
                         <BlogConsole
                             v-if="content.block_id == 4"
                             @click="blockSeletModalopen(content.id)"
+                            @delete="deleteBlock(content.id)"
                         >
                             <textarea
                                 @input="change($event.target.value, content.id)"
                                 type="text"
                                 class="bg-transparent inline-block whitespace-pre w-full outline-none"
                                 v-model="content.content"
+                                rows="5"
                             ></textarea>
                         </BlogConsole>
                         <BlogURL
                             v-if="content.block_id == 5"
                             @click="blockSeletModalopen(content.id)"
+                            @delete="deleteBlock(content.id)"
                         >
                             <input
                                 @input="change($event.target.value, content.id)"
                                 type="text"
-                                class="bg-transparent inline-block whitespace-pre w-auto outline-none"
+                                class="w-full bg-transparent inline-block whitespace-pre outline-none"
                                 :value="content.content"
                             />
                         </BlogURL>

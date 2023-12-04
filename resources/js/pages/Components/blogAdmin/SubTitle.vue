@@ -1,5 +1,6 @@
 <script setup>
 import BloSubTitle from "@/Components/blog/SubTitle.vue";
+import ButtonDelete from "@/Components/button/Delete.vue";
 import ButtonPlus from "@/Components/button/Plus.vue";
 const props = defineProps({
     content: {
@@ -7,16 +8,22 @@ const props = defineProps({
         default: "input_display",
     },
 });
-const emit = defineEmits(["click"]);
+const emit = defineEmits(["click", "delete"]);
 
 const clickEvent = () => {
     emit("click");
 };
+const deleteEvent = () => {
+    emit("delete");
+};
 </script>
 
 <template>
-    <BloSubTitle>
-        <slot />
-    </BloSubTitle>
+    <div class="border p-2">
+        <BloSubTitle class=""> <slot /> </BloSubTitle>
+        <div class="w-full flex justify-end">
+            <ButtonDelete @click="deleteEvent" />
+        </div>
+    </div>
     <ButtonPlus @click="clickEvent" color="green" />
 </template>
