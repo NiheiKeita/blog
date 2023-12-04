@@ -11,6 +11,8 @@ import BlogURL from "@/Components/blogAdmin/URL.vue";
 import ButtonDefaultThema from "@/Components/button/DefaultThema.vue";
 import ButtonSub from "@/Components/button/Sub.vue";
 import InputDefaultThema from "@/Components/input/DefaultThema.vue";
+import Modal from "@/Components/Modal.vue";
+
 import { useForm } from "@inertiajs/vue3";
 import { ref } from "vue";
 
@@ -20,6 +22,17 @@ const contentRef = ref("");
 const metaTitleRef = ref("");
 const metaDescriptionRef = ref("");
 const tagsRef = ref("");
+const selectBlock = ref(0);
+const blockSeletModalopenRef = ref(false);
+const selectComponent = ref(0);
+const componentSeletModalopenRef = ref(false);
+const blocksRef = ref([
+    {
+        id: 1,
+        block_id: 1,
+        content: "",
+    },
+]);
 
 const form = useForm({
     content: null,
@@ -37,55 +50,6 @@ const submit = () => {
 
     form.post(route("admin.blog.store"));
 };
-const blocksRef = ref([
-    {
-        id: 1,
-        block_id: 1,
-        content: "ddddd",
-    },
-    {
-        id: 2,
-        block_id: 2,
-        content: "",
-        components: [
-            {
-                id: 1,
-                component_id: 1,
-                content: "ddddd",
-            },
-            {
-                id: 2,
-                component_id: 2,
-                content: "ddddd",
-            },
-            {
-                id: 3,
-                component_id: 3,
-                content: "",
-            },
-            {
-                id: 4,
-                component_id: 1,
-                content: "ddddd",
-            },
-        ],
-    },
-    {
-        id: 3,
-        block_id: 3,
-        content: "ddddd",
-    },
-    {
-        id: 4,
-        block_id: 4,
-        content: "ddddd",
-    },
-    {
-        id: 5,
-        block_id: 5,
-        content: "ddddd",
-    },
-]);
 const back = () => {
     window.history.back();
 };
@@ -102,43 +66,98 @@ const change = (value, block_id, component_id = "") => {
 
     content.content = value;
 };
-const addBlock = (block_id) => {
-    //TODO(popupで処理追加)
+
+//POPUP系
+const blockSeletModalopen = (block_id) => {
+    selectBlock.value = block_id;
+    blockSeletModalopenRef.value = true;
+};
+const blockSeletModalclose = () => {
+    selectBlock.value = 0;
+    blockSeletModalopenRef.value = false;
+};
+const componentSeletModalopen = (block_id, component_id) => {
+    selectComponent.value = component_id;
+    selectBlock.value = block_id;
+    componentSeletModalopenRef.value = true;
+};
+const componentSeletModalclose = () => {
+    selectComponent.value = 0;
+    selectBlock.value = 0;
+    componentSeletModalopenRef.value = false;
+};
+const addBlock = (select_block_id) => {
+    if (selectBlock.value == 0) {
+        blockSeletModalclose();
+        return;
+    }
     var ids = blocksRef.value.map(function (data) {
         return data.id;
     });
+    var addComp = [];
+    if (select_block_id == 2) {
+        addComp = [
+            {
+                id: 1,
+                component_id: 1,
+                content: "",
+            },
+        ];
+    }
     var addBlock = {
         id: Math.max.apply(null, ids) + 1,
-        block_id: 5,
+        block_id: select_block_id,
         content: "",
+        components: addComp,
     };
     blocksRef.value.splice(
-        blocksRef.value.findIndex((element) => element.id == block_id) + 1,
+        blocksRef.value.findIndex(
+            (element) => element.id == selectBlock.value
+        ) + 1,
         0,
         addBlock
     );
+    blockSeletModalclose();
 };
-const addComponent = (block_id, component_id) => {
-    //TODO(popupで処理追加)
+const addComponent = (component_id) => {
+    if (selectComponent.value == 0 || selectBlock.value == 0) {
+        componentSeletModalclose();
+        return;
+    }
     var component = blocksRef.value.find(
-        (element) => element.id == block_id
+        (element) => element.id == selectBlock.value
     ).components;
     var ids = component.map(function (data) {
         return data.id;
     });
     var addComponent = {
         id: Math.max.apply(null, ids) + 1,
-        component_id: 1,
+        component_id: component_id,
         content: "",
     };
     blocksRef.value
-        .find((element) => element.id == block_id)
+        .find((element) => element.id == selectBlock.value)
         .components.splice(
-            component.findIndex((element) => element.id == component_id) + 1,
+            component.findIndex(
+                (element) => element.id == selectComponent.value
+            ) + 1,
             0,
             addComponent
         );
+    componentSeletModalclose();
 };
+const blockType = [
+    { option_id: 1, label: "BlogGoal" },
+    { option_id: 2, label: "文章" },
+    { option_id: 3, label: "SubTitle" },
+    { option_id: 4, label: "BlogConsole" },
+    { option_id: 5, label: "BlogURL" },
+];
+const componentType = [
+    { option_id: 1, label: "BlogP" },
+    { option_id: 2, label: "BlogCode" },
+    { option_id: 3, label: "BlogBr" },
+];
 </script>
 
 <template>
@@ -192,7 +211,7 @@ const addComponent = (block_id, component_id) => {
                     <template v-for="(content, i) in blocksRef" :key="i">
                         <BlogGoal
                             v-if="content.block_id == 1"
-                            @click="addBlock(content.id)"
+                            @click="blockSeletModalopen(content.id)"
                         >
                             <input
                                 @input="change($event.target.value, content.id)"
@@ -208,7 +227,7 @@ const addComponent = (block_id, component_id) => {
                         </BlogGoal>
                         <BlogContent
                             v-if="content.block_id == 2"
-                            @click="addBlock(content.id)"
+                            @click="blockSeletModalopen(content.id)"
                         >
                             <template
                                 v-for="(component, j) in content.components"
@@ -218,7 +237,10 @@ const addComponent = (block_id, component_id) => {
                                     class="inline-block"
                                     v-if="component.component_id == 1"
                                     @click="
-                                        addComponent(content.id, component.id)
+                                        componentSeletModalopen(
+                                            content.id,
+                                            component.id
+                                        )
                                     "
                                 >
                                     <input
@@ -242,14 +264,20 @@ const addComponent = (block_id, component_id) => {
                                 <BlogBr
                                     v-if="component.component_id == 3"
                                     @click="
-                                        addComponent(content.id, component.id)
+                                        componentSeletModalopen(
+                                            content.id,
+                                            component.id
+                                        )
                                     "
                                 />
                                 <BlogCode
                                     class="inline-block"
                                     v-if="component.component_id == 2"
                                     @click="
-                                        addComponent(content.id, component.id)
+                                        componentSeletModalopen(
+                                            content.id,
+                                            component.id
+                                        )
                                     "
                                 >
                                     <input
@@ -274,7 +302,7 @@ const addComponent = (block_id, component_id) => {
                         </BlogContent>
                         <SubTitle
                             v-if="content.block_id == 3"
-                            @click="addBlock(content.id)"
+                            @click="blockSeletModalopen(content.id)"
                         >
                             <input
                                 @input="change($event.target.value, content.id)"
@@ -285,7 +313,7 @@ const addComponent = (block_id, component_id) => {
                         </SubTitle>
                         <BlogConsole
                             v-if="content.block_id == 4"
-                            @click="addBlock(content.id)"
+                            @click="blockSeletModalopen(content.id)"
                         >
                             <textarea
                                 @input="change($event.target.value, content.id)"
@@ -296,7 +324,7 @@ const addComponent = (block_id, component_id) => {
                         </BlogConsole>
                         <BlogURL
                             v-if="content.block_id == 5"
-                            @click="addBlock(content.id)"
+                            @click="blockSeletModalopen(content.id)"
                         >
                             <input
                                 @input="change($event.target.value, content.id)"
@@ -322,5 +350,17 @@ const addComponent = (block_id, component_id) => {
                 />
             </div>
         </div>
+        <Modal
+            :options="blockType"
+            :show="blockSeletModalopenRef"
+            @closeClick="blockSeletModalclose"
+            @select="addBlock($event)"
+        />
+        <Modal
+            :options="componentType"
+            :show="componentSeletModalopenRef"
+            @closeClick="componentSeletModalclose"
+            @select="addComponent($event)"
+        />
     </Layout>
 </template>
