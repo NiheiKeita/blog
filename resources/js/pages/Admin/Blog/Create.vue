@@ -73,7 +73,7 @@ const change = (value, block_id, component_id = "") => {
     } else {
         content = blocksRef.value
             .find((element) => element.id == block_id)
-            .components.find((element) => element.id == component_id);
+            .blog_components.find((element) => element.id == component_id);
     }
 
     content.content = value;
@@ -121,7 +121,7 @@ const addBlock = (select_block_id) => {
         id: Math.max.apply(null, ids) + 1,
         block_id: select_block_id,
         content: "",
-        components: addComp,
+        blog_components: addComp,
     };
     blocksRef.value.splice(
         blocksRef.value.findIndex(
@@ -139,7 +139,7 @@ const addComponent = (component_id) => {
     }
     var component = blocksRef.value.find(
         (element) => element.id == selectBlock.value
-    ).components;
+    ).blog_components;
     var ids = component.map(function (data) {
         return data.id;
     });
@@ -150,7 +150,7 @@ const addComponent = (component_id) => {
     };
     blocksRef.value
         .find((element) => element.id == selectBlock.value)
-        .components.splice(
+        .blog_components.splice(
             component.findIndex(
                 (element) => element.id == selectComponent.value
             ) + 1,
@@ -173,13 +173,13 @@ const deleteBlock = (block_id) => {
 const componentDelete = (block_id, component_id) => {
     var component = blocksRef.value.find(
         (element) => element.id == block_id
-    ).components;
+    ).blog_components;
     if (component.length <= 1) {
         return;
     }
     blocksRef.value
         .find((element) => element.id == block_id)
-        .components.splice(
+        .blog_components.splice(
             component.findIndex((element) => element.id == component_id),
             1
         );
@@ -258,7 +258,9 @@ const componentDelete = (block_id, component_id) => {
                             @delete="deleteBlock(content.id)"
                         >
                             <template
-                                v-for="(component, j) in content.components"
+                                v-for="(
+                                    component, j
+                                ) in content.blog_components"
                                 :key="j"
                             >
                                 <BlogP

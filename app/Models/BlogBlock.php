@@ -13,6 +13,16 @@ class BlogBlock extends Model
     protected $guarded = [
         "id"
     ];
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($blogBlock) {
+            $blogBlock->blog_components()->delete();
+        });
+    }
+
+
     public function blog_components()
     {
         return $this->hasMany(BlogComponent::class);

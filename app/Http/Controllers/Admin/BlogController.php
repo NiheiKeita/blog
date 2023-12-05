@@ -29,7 +29,7 @@ class BlogController extends Controller
     }
 
     public function edit(Request $request){
-        $blog = Blog::find($request->id);
+        $blog = Blog::where('id',$request->id)->with(['blog_blocks.blog_components'])->first();
         $tags = \Common::get_tag_names($blog->tags);
         return Inertia::render('Admin/Blog/Update', [
             'blog' => $blog,
@@ -59,6 +59,7 @@ class BlogController extends Controller
             'meta_description' => $request->meta_description,
         ]);
         $blog->tags()->sync(\Common::get_tag_ids($tags));
+        $this->updateBlocks($request->blocks,$blog);
         return redirect()->route('admin.blog.index');
     }
 
@@ -85,7 +86,7 @@ class BlogController extends Controller
                 'content' => $block["content"],
             ]);
             if($blogBlock->block_id == 2){
-                foreach ($block["components"] as $component){
+                foreach ($block["blog_components"] as $component){
                     $blogBlock->blog_components()->create([
                         'blog_block_id' => $blogBlock->id,
                         'component_id' => $component["component_id"],
@@ -95,7 +96,13 @@ class BlogController extends Controller
                 }
             }
         }
+    }
+    public function updateBlocks($blocks,$blog){
 
+        foreach ($blocks as $block){
+            $blog->blog_blocks()->delete();
+        }
+        $this->storeBlocks($blocks,$blog);
     }
 
 }
