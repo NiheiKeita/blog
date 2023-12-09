@@ -15,20 +15,12 @@ class LoginController extends Controller
         return Inertia::render('Admin/Login');
     }
     public function check(LoginRequest $request){
-        // $credentials = [
-        //     'email' => 'keita.nihei.1996.05.29@gmail.com',
-        //     'password' => 'nihei4649'
-        // ];
-        // $aaa = Auth::guard('admin')->attempt($credentials, false);
-        // dump($aaa);
-        // dd(Hash::make("nihei4649"));
-        // dd($request);
         $credentials = [
             'email' => $request->get('email'),
             'password' => $request->get('password')
         ];
         if(Auth::guard('admin')->attempt($credentials, false)){
-            return redirect()->route('admin.top');
+            return redirect()->route('admin.blog.index');
         }else{
             return back()->withErrors(array('login' => 'メールアドレスかパスワードが間違っています。'))->withInput();
         }

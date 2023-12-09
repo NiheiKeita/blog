@@ -18,7 +18,8 @@ use Hash;
 class BlogController extends Controller
 {
     public function index(){
-        $blogs = Blog::all();
+
+        $blogs = Auth::user()->blogs;
         return Inertia::render('Admin/Blog/Index', [
             'blogs' => $blogs,
         ]);
@@ -29,7 +30,7 @@ class BlogController extends Controller
     }
 
     public function edit(Request $request){
-        $blog = Blog::where('id',$request->id)->with(['blog_blocks.blog_components'])->first();
+        $blog = Auth::user()->blogs()->where('id',$request->id)->with(['blog_blocks.blog_components'])->first();
         $tags = \Common::get_tag_names($blog->tags);
         return Inertia::render('Admin/Blog/Update', [
             'blog' => $blog,
@@ -39,7 +40,7 @@ class BlogController extends Controller
 
     public function store(BlogCreateRequest $request){
         $tags = \Common::double_explode(' ', ',', '、', '#', '　', '＃', $request->tags);
-        $blog = Blog::create([
+        $blog = Auth::user()->blogs()->create([
             'content' => $request->content,
             'meta_title' => $request->meta_title,
             'meta_description' => $request->meta_description,
@@ -52,7 +53,7 @@ class BlogController extends Controller
 
     public function update(BlogCreateRequest $request){
         $tags = \Common::double_explode(' ', ',', '、', '#', '　', '＃', $request->tags);
-        $blog = Blog::find($request->id);
+        $blog = Auth::user()->blogs()->find($request->id);
         $blog->update([
             'content' => $request->content,
             'meta_title' => $request->meta_title,
@@ -65,7 +66,7 @@ class BlogController extends Controller
 
     public function show(Request $request){
         // $blog = Blog::find($request->id);
-        $blog = Blog::where('id',$request->id)->with(['blog_blocks.blog_components'])->first();
+        $blog = Auth::user()->blogs()->where('id',$request->id)->with(['blog_blocks.blog_components'])->first();
         $tags = \Common::get_tag_names($blog->tags);
         return Inertia::render('Admin/Blog/Show', [
             'blog' => $blog,

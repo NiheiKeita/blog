@@ -19,16 +19,16 @@ import { ref } from "vue";
 defineProps({ errors: Object });
 
 const blockType = [
-    { option_id: 1, label: "BlogGoal" },
+    { option_id: 1, label: "目標" },
     { option_id: 2, label: "文章" },
-    { option_id: 3, label: "SubTitle" },
-    { option_id: 4, label: "BlogConsole" },
-    { option_id: 5, label: "BlogURL" },
+    { option_id: 3, label: "サブタイトル" },
+    { option_id: 4, label: "コンソール" },
+    { option_id: 5, label: "URL" },
 ];
 const componentType = [
-    { option_id: 1, label: "BlogP" },
-    { option_id: 2, label: "BlogCode" },
-    { option_id: 3, label: "BlogBr" },
+    { option_id: 1, label: "普通の文字" },
+    { option_id: 2, label: "コード" },
+    { option_id: 3, label: "改行" },
 ];
 const contentRef = ref("");
 const metaTitleRef = ref("");
@@ -247,7 +247,7 @@ const componentDelete = (block_id, component_id) => {
                                 :value="content.content"
                                 v-autowidth="{
                                     maxWidth: '100%',
-                                    minWidth: '10px',
+                                    minWidth: '30px',
                                     comfortZone: 0,
                                 }"
                             />
@@ -292,7 +292,7 @@ const componentDelete = (block_id, component_id) => {
                                         :value="component.content"
                                         v-autowidth="{
                                             maxWidth: '100%',
-                                            minWidth: '10px',
+                                            minWidth: '30px',
                                             comfortZone: 0,
                                         }"
                                     />
@@ -341,7 +341,7 @@ const componentDelete = (block_id, component_id) => {
                                         :value="component.content"
                                         v-autowidth="{
                                             maxWidth: '100%',
-                                            minWidth: '10px',
+                                            minWidth: '30px',
                                             comfortZone: 0,
                                         }"
                                     />

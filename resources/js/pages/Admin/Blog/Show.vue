@@ -35,7 +35,6 @@ const submit = () => {
     form.post(route("admin.blog.store"));
 };
 const blocksRef = ref(props.blog.blog_blocks);
-console.log(props.blog);
 const back = () => {
     window.history.back();
 };
@@ -102,34 +101,26 @@ const addComponent = (block_id, component_id) => {
             <div class="flex justify-center mt-20">
                 <div class="w-full lg:w-3/4 min-h-full p-8">
                     <div>ブログのタイトル</div>
-                    <InputDefaultThema
-                        v-model="contentRef"
-                        type="text"
-                        name="content"
-                        :error="errors.content"
-                        class="mt-2"
-                    />
+                    <div class="mt-5 ml-5">{{ blog.content }}</div>
                     <div class="mt-5">metaタグのtitle</div>
-                    <InputDefaultThema
-                        v-model="metaTitleRef"
-                        type="text"
-                        name="meta_title"
-                        class="mt-2"
-                    />
+                    <div class="mt-5 ml-5">
+                        {{ blog.meta_title ?? "--空欄--" }}
+                    </div>
                     <div class="mt-5">meta_description</div>
-                    <InputDefaultThema
-                        v-model="metaDescriptionRef"
-                        type="text"
-                        name="meta_description"
-                        class="mt-2"
-                    />
+                    <div class="mt-5 ml-5">
+                        {{ blog.meta_description ?? "--空欄--" }}
+                    </div>
                     <div class="mt-5">タグ</div>
-                    <InputDefaultThema
-                        v-model="tagsRef"
-                        type="text"
-                        name="tags"
-                        class="mt-2"
-                    />
+                    <div class="mt-5 ml-5">{{ tags ?? "--空欄--" }}</div>
+                    <div class="mt-5">URL</div>
+                    <div class="mt-5">
+                        <a
+                            :href="route('blog.show', blog.id)"
+                            target="_blank"
+                            class="text-blue-500 hover:underline"
+                            >{{ route("blog.show", blog.id) }}</a
+                        >
+                    </div>
                 </div>
             </div>
             <div class="mt-10 flex items-center justify-center text-2xl">

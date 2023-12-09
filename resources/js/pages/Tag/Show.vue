@@ -1,6 +1,6 @@
 <script setup>
 import Layout from "@/Layouts/Layout.vue";
-import { Link } from "@inertiajs/vue3";
+import { Head, Link } from "@inertiajs/vue3";
 defineProps({ errors: Object, blogs: Object, tag: String });
 const transition = () => {
     route("admin.blog.index");
@@ -15,6 +15,16 @@ const transition = () => {
                 name="description"
                 :content="'暇なエンジニア｜' + tag?.name"
             />
+            <meta
+                name="og:title"
+                :content="'暇なエンジニア｜' + tag?.content"
+            />
+            <meta
+                name="og:description"
+                :content="'暇なエンジニア｜' + tag?.meta_description"
+            />
+            <meta name="og:site_name" content="'暇なエンジニア" />
+            <meta name="og:image" content="/imgs/icon_web.jpg" />
         </Head>
         <div class="">
             <div

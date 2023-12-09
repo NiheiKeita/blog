@@ -22,16 +22,10 @@ defineProps({
         <BlogTitle>{{ blog.content }}</BlogTitle>
         <BlogTags :tags="blog.tags" />
         <template v-for="(content, i) in blog.blog_blocks" :key="i">
-            <BlogGoal
-                v-if="content.block_id == 1"
-                @click="addBlock(content.id)"
-            >
+            <BlogGoal v-if="content.block_id == 1">
                 {{ content.content }}
             </BlogGoal>
-            <BlogContent
-                v-if="content.block_id == 2"
-                @click="addBlock(content.id)"
-            >
+            <BlogContent v-if="content.block_id == 2">
                 <template
                     v-for="(component, j) in content.blog_components"
                     :key="j"

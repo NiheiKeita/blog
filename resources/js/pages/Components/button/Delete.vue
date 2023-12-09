@@ -13,7 +13,7 @@ const clickEvent = () => {
 </script>
 
 <template>
-    <div class="inline-block h-full">
+    <div class="inline-block h-full ms-5">
         <div class="flex items-end justify-end">
             <a
                 href="javascript:void(0)"

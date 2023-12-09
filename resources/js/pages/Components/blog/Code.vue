@@ -8,5 +8,5 @@ const props = defineProps({
 </script>
 
 <template>
-    <code class="bg-gray-200 p-1 mx-1"><slot /></code>
+    <code class="bg-gray-200 px-1 mx-1"><slot /></code>
 </template>

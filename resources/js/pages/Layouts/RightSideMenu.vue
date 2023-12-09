@@ -7,27 +7,27 @@ const blogsRef = ref();
 axios
     .get("/api/tags/")
     .then((response) => {
-        console.log(response);
         tagsRef.value = response.data;
     })
     .catch((error) => {
-        console.log(error);
+        // console.log(error);
     })
     .finally(() => {});
 axios
     .get("/api/blogs/")
     .then((response) => {
-        console.log(response);
         blogsRef.value = response.data;
     })
     .catch((error) => {
-        console.log(error);
+        // console.log(error);
     })
     .finally(() => {});
 </script>
 
 <template>
-    <div class="w-full h-full p-8 shadow-md rounded-md text-gray-900 bg-Linen">
+    <div
+        class="w-full h-full p-8 shadow-md rounded-md text-gray-900 bg-Linen leading-6 text-sm"
+    >
         <h2 class="text-xl font-bold mb-2" v-if="blogsRef">記事</h2>
         <div v-for="(blog, i) in blogsRef" :key="i">
             <div class="flex justify-start">

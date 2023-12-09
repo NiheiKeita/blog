@@ -1,6 +1,6 @@
 <script setup>
 import Layout from "@/Layouts/Layout.vue";
-import { Link } from "@inertiajs/vue3";
+import { Head, Link } from "@inertiajs/vue3";
 defineProps({ errors: Object, tags: Object });
 const transition = () => {
     route("admin.blog.index");
@@ -12,6 +12,10 @@ const transition = () => {
         <Head>
             <title>暇なエンジニア｜タグ一覧</title>
             <meta name="description" content="暇なエンジニア｜タグ一覧" />
+            <meta name="og:title" content="暇なエンジニア｜タグ一覧" />
+            <meta name="og:description" content="暇なエンジニア｜タグ一覧" />
+            <meta name="og:site_name" content="'暇なエンジニア" />
+            <meta name="og:image" content="/imgs/icon_web.jpg" />
         </Head>
         <div class="">
             <div
