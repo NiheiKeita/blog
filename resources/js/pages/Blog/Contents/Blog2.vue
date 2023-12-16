@@ -20,11 +20,12 @@ defineProps({
                 </p>
                 <code class="mb-2"> composer require tightenco/ziggy </code>
                 <p class="">app.blade.php ファイルに@routesを追加</p>
+                @vite('resources/js/app.js') @inertiaHead @routes
             </div>
             <div class="mb-6">
                 <p class="mb-2">app.jsに</p>
                 <code class="mb-2"> .mixin({ methods: { route } }) </code>
-                <p class="">aを追加する</p>
+                <p class="">を追加する</p>
             </div>
         </div>
         <div class="w-full">
