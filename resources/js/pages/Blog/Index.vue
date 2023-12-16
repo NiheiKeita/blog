@@ -16,6 +16,8 @@ const transition = () => {
             <meta name="og:description" content="暇なエンジニア｜ブログ一覧" />
             <meta name="og:site_name" content="'暇なエンジニア" />
             <meta name="og:image" content="/imgs/icon_web.jpg" />
+            <meta name="og:type" content="blog" />
+            <meta property="og:url" content=" ページの URL" />
         </Head>
         <div class="">
             <div
