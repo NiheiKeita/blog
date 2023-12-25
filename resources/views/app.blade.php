@@ -6,7 +6,9 @@
         {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}}
         <title inertia>暇なエンジニア</title>
         <link rel="icon" href="/imgs/favicon.ico">
-        <meta name="google-adsense-account" content="ca-pub-3368082412026829">
+        <meta name="google-adsense-account" content="ca-pub-5047266594533407">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5047266594533407"
+        crossorigin="anonymous"></script>
         <!-- Scripts -->
         @vite('resources/js/app.js') @inertiaHead  @routes
     </head>
