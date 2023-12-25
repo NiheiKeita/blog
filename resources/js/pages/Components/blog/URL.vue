@@ -9,6 +9,8 @@ const props = defineProps({
 
 <template>
     <div class="mb-5">
-        <a :href="content" class="text-blue-500 hover:underline"><slot /> </a>
+        <a :href="content" class="text-blue-500 hover:underline" target="_blank"
+            ><slot />
+        </a>
     </div>
 </template>

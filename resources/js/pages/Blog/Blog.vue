@@ -51,7 +51,7 @@ defineProps({
             >
                 {{ content.content }}
             </BlogConsole>
-            <BlogURL v-if="content.block_id == 5">
+            <BlogURL v-if="content.block_id == 5" :content="content.content">
                 {{ content.content }}
             </BlogURL>
         </template>
