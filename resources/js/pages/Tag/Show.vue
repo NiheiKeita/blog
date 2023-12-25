@@ -28,15 +28,15 @@ const transition = () => {
         </Head>
         <div class="">
             <div
-                class="mt-5 flex items-center justify-center text-3xl font-bold"
+                class="mt-5 flex items-center justify-center text-xl font-bold"
             >
-                <p>{{ tag?.name }}タグ</p>
+                <p>{{ tag?.name }}</p>
             </div>
-            <div
+            <!-- <div
                 class="mt-5 flex items-center justify-center text-2xl font-bold"
             >
                 <p>ブログ一覧</p>
-            </div>
+            </div> -->
             <ul class="mt-10">
                 <li
                     v-for="(blog, i) in blogs"
