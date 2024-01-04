@@ -25,6 +25,7 @@ const transition = () => {
             />
             <meta name="og:site_name" content="'暇なエンジニア" />
             <meta name="og:image" content="/imgs/icon_web.jpg" />
+            <meta name="robots" content="noindex,nofollow" />
         </Head>
         <div class="">
             <div
