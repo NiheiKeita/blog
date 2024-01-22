@@ -22,7 +22,7 @@ class BlogController extends Controller
     public function show(Request $request){
         $blog = Blog::where('id',$request->id)->with(['blog_blocks.blog_components'])->first();
         // $blog = Blog::find($request->id);
-        if(empty($blog)){
+        if(empty($blog) || $blog->is_private){
             abort(404);
         }
         $tags = \Common::get_tag_names($blog->tags ?? null);
