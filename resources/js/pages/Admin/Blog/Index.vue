@@ -28,15 +28,35 @@ const transition = () => {
                 <li
                     v-for="(blog, i) in blogs"
                     :key="i"
-                    class="rounded shadow-md border-b p-4 m-2 bg-white"
+                    class="rounded shadow-md border-b p-2 m-2 bg-white"
                 >
                     <Link
                         :href="route('admin.blog.show', blog.id)"
                         class="flex justify-between"
                     >
-                        <p class="text-blue-500 hover:underline">
-                            {{ blog.content }}
-                        </p>
+                        <div class="flex justify-between w-full">
+                            <p
+                                class="text-blue-500 hover:underline lg:w-11/12 w-4/5"
+                            >
+                                {{ blog.content }}
+                            </p>
+                            <div
+                                class="lg:w-1/5 mx-1 lg:mx-3 flex justify-center"
+                            >
+                                <p
+                                    class="text-white bg-red-500 text-xs lg:text-sm h-fit rounded-full p-1"
+                                    v-show="blog.is_private"
+                                >
+                                    private
+                                </p>
+                                <p
+                                    class="text-white bg-green-500 text-xs lg:text-sm h-fit rounded-full p-1"
+                                    v-show="!blog.is_private"
+                                >
+                                    public
+                                </p>
+                            </div>
+                        </div>
                         <ButtonTransition
                             msg="編集"
                             :route="route('admin.blog.edit', blog.id)"

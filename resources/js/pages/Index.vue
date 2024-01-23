@@ -6,7 +6,7 @@ defineProps({
 
 <template>
     <div class="font-body">
-        <div class="fixed inset-0 -z-10 bg-gray-50 md:mx-[20%]"></div>
+        <div class="fixed inset-0 -z-10 bg-gray-50 lg:mx-[20%]"></div>
         <Header class="z-50" />
         <div>
             <div></div>

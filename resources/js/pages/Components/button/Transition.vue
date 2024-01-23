@@ -16,9 +16,9 @@ defineProps({
 <template>
     <Link :href="route">
         <div
-            class="min-w-[200px] rounded-lg border border-ThemaColorComplementary bg-ThemaColor hover:bg-ThemaColorHover shadow-md"
+            class="lg:min-w-[200px] min-w-[60px] rounded-lg border border-ThemaColorComplementary bg-ThemaColor hover:bg-ThemaColorHover shadow-md"
         >
-            <p class="mx-10 my-2 flex justify-center text-lg text-white">
+            <p class="lg:mx-10 mx-2 my-2 flex justify-center text-white">
                 {{ msg }}
             </p>
         </div>
