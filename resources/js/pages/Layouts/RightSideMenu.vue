@@ -1,4 +1,5 @@
 <script setup>
+import BlogTags from "@/Components/blog/MenuTags.vue";
 import axios from "axios";
 import { ref } from "vue";
 
@@ -40,88 +41,6 @@ axios
             </div>
         </div>
         <h2 class="text-xl font-bold mb-2 mt-10" v-if="tagsRef">タグ</h2>
-        <div v-for="(tag, i) in tagsRef" :key="i">
-            <div class="flex justify-start">
-                <div>・</div>
-                <a
-                    :href="route('tag.show', tag.id)"
-                    class="text-blue-500 hover:underline"
-                    >{{ tag.name }}</a
-                >
-            </div>
-        </div>
-        <!-- <div>
-            <Link
-                :href="route('blog.show', 1)"
-                class="text-blue-500 hover:underline"
-                >メニュー1</Link
-            >
-        </div>
-        <div>
-            <Link
-                :href="route('blog.show', 2)"
-                class="text-blue-500 hover:underline"
-                >メニュー2</Link
-            >
-        </div> -->
-        <!-- <div class="mb-4">
-            <h2 class="text-xl font-bold mb-2">カテゴリー</h2>
-            <ul>
-                <li>
-                    <a href="#" class="text-blue-500 hover:underline"
-                        >カテゴリー1
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="text-blue-500 hover:underline"
-                        >カテゴリー2</a
-                    >
-                </li>
-                <li>
-                    <a href="#" class="text-blue-500 hover:underline"
-                        >カテゴリー3</a
-                    >
-                </li>
-            </ul>
-        </div>
-
-        <div class="mb-4">
-            <h2 class="text-xl font-bold mb-2">人気の記事</h2>
-            <ul>
-                <li>
-                    <a href="#" class="text-blue-500 hover:underline">記事1</a>
-                </li>
-                <li>
-                    <a href="#" class="text-blue-500 hover:underline">記事2</a>
-                </li>
-                <li>
-                    <a href="#" class="text-blue-500 hover:underline">記事3</a>
-                </li>
-            </ul>
-        </div>
-
-        <div>
-            <h2 class="text-xl font-bold mb-2">フォローしてください</h2>
-            <div class="flex items-center">
-                <img
-                    src="https://via.placeholder.com/40"
-                    alt="Twitter"
-                    class="rounded-full mr-2"
-                />
-                <a href="#" class="text-blue-500 hover:underline"
-                    >@Twitterアカウント</a
-                >
-            </div>
-            <div class="flex items-center mt-2">
-                <img
-                    src="https://via.placeholder.com/40"
-                    alt="Instagram"
-                    class="rounded-full mr-2"
-                />
-                <a href="#" class="text-blue-500 hover:underline"
-                    >@Instagramアカウント</a
-                >
-            </div>
-        </div>-->
+        <BlogTags :tags="tagsRef" />
     </div>
 </template>

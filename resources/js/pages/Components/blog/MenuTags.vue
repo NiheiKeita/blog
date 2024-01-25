@@ -8,7 +8,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="w-full flex justify-end mb-8 flex-wrap">
+    <div class="w-full flex justify-start mb-8 flex-wrap">
         <div v-for="(tag, i) in tags" :key="i">
             <div class="border rounded-full bg-sky-300 px-2 m-1" v-if="tag.id">
                 <a
