@@ -82,16 +82,6 @@ axios
                     </div>
                     <div class="bg-gray-200 h-[1px] w-full mt-1"></div>
                     <BlogTags :tags="tagsRef" />
-                    <!-- <div v-for="(tag, i) in tagsRef" :key="i">
-                        <div class="flex justify-start my-2">
-                            <a
-                                :href="route('tag.show', tag.id)"
-                                class="text-blue-500 hover:underline text-left"
-                                >{{ tag.name }}</a
-                            >
-                        </div>
-                        <div class="bg-gray-200 h-[1px] w-full mt-1"></div>
-                    </div> -->
                 </div>
             </div>
         </Transition>
