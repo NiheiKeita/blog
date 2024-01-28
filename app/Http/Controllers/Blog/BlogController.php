@@ -21,7 +21,6 @@ class BlogController extends Controller
 
     public function show(Request $request){
         $blog = Blog::where('id',$request->id)->with(['blog_blocks.blog_components'])->first();
-        // $blog = Blog::find($request->id);
         if(empty($blog) || $blog->is_private){
             abort(404);
         }
@@ -30,10 +29,6 @@ class BlogController extends Controller
             'blog' => $blog,
             'tags' => $tags,
         ]);
-        // return Inertia::render('Blog/Contents/Blog'.$blog->id, [
-        //     'blog' => $blog,
-        //     'tags' => $tags,
-        // ]);
     }
 
 }

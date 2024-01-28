@@ -83,7 +83,7 @@ const change = (value, block_id, component_id = "") => {
 };
 
 //POPUP系
-//追加関係
+//要素追加関係
 const blockSeletModalopen = (block_id) => {
     selectBlock.value = block_id;
     blockSeletModalopenRef.value = true;
@@ -162,7 +162,6 @@ const addComponent = (component_id) => {
         );
     componentSeletModalclose();
 };
-
 //削除関係
 const deleteBlock = (block_id) => {
     if (blocksRef.value.length <= 1) {

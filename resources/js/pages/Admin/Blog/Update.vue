@@ -79,7 +79,7 @@ const change = (value, block_id, component_id = "") => {
 };
 
 //POPUP系
-//追加関係
+//要素追加関係
 const blockSeletModalopen = (block_id) => {
     selectBlock.value = block_id;
     blockSeletModalopenRef.value = true;

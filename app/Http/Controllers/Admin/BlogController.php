@@ -67,7 +67,6 @@ class BlogController extends Controller
     }
 
     public function show(Request $request){
-        // $blog = Blog::find($request->id);
         $blog = Auth::user()->blogs()->where('id',$request->id)->with(['blog_blocks.blog_components'])->first();
         $tags = \Common::get_tag_names($blog->tags);
         return Inertia::render('Admin/Blog/Show', [

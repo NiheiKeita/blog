@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//表側サイト
 Route::namespace('App\Http\Controllers\Blog')->group(function () {
     Route::prefix('blogs')->name('blog.')->group(function () {
         Route::match(['get', 'post'], '/', 'BlogController@index')->name('index');
@@ -27,9 +28,6 @@ Route::namespace('App\Http\Controllers\Blog')->group(function () {
 Route::namespace('App\Http\Controllers\Blog')->group(function () {
     Route::match(['get', 'post'], '/', 'TopController@index')->name('top');
 });
-
-
-
 
 //管理画面
 Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->name('admin.')->group(function () {
