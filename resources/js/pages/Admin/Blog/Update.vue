@@ -39,6 +39,9 @@ const blockSeletModalopenRef = ref(false);
 const selectComponent = ref(0);
 const componentSeletModalopenRef = ref(false);
 const blocksRef = ref(props.blog.blog_blocks);
+//HACK:わたってくるものをboolにする
+const isPrivateRef = ref(props.blog.is_private == 1);
+console.log(props.blog.is_private);
 
 const form = useForm({
     content: null,
@@ -46,6 +49,7 @@ const form = useForm({
     meta_description: null,
     tags: null,
     blocks: null,
+    is_private: false,
 });
 const submit = () => {
     form.content = contentRef.value;
@@ -53,6 +57,7 @@ const submit = () => {
     form.meta_description = metaDescriptionRef.value;
     form.tags = tagsRef.value;
     form.blocks = blocksRef.value;
+    form.is_private = isPrivateRef.value;
 
     form.put(route("admin.blog.update", props.blog.id));
 };
@@ -219,6 +224,13 @@ const componentDelete = (block_id, component_id) => {
                         name="tags"
                         class="mt-2"
                     />
+                    <input
+                        class="mt-5"
+                        type="checkbox"
+                        id="isPrivateCheckbox"
+                        v-model="isPrivateRef"
+                    />
+                    <label for="isPrivateCheckbox"> 公開しない </label>
                 </div>
             </div>
             <div class="mt-10 flex items-center justify-center text-2xl">

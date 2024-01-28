@@ -13,7 +13,7 @@ class BlogController extends Controller
     private $title = "top";
 
     public function index(Request $request){
-        $blogs = Blog::all();
+        $blogs = Blog::showLists();
         return Inertia::render('Blog/Index', [
             'blogs' => $blogs,
         ]);

@@ -44,10 +44,11 @@ class BlogController extends Controller
             'content' => $request->content,
             'meta_title' => $request->meta_title,
             'meta_description' => $request->meta_description,
+            'is_private' => $request->is_private,
         ]);
         $blog->tags()->attach(\Common::get_tag_ids($tags));
         $this->storeBlocks($request->blocks,$blog);
-        // dd($blog->blog_blocks);
+
         return redirect()->route('admin.blog.index');
     }
 
@@ -58,6 +59,7 @@ class BlogController extends Controller
             'content' => $request->content,
             'meta_title' => $request->meta_title,
             'meta_description' => $request->meta_description,
+            'is_private' => $request->is_private,
         ]);
         $blog->tags()->sync(\Common::get_tag_ids($tags));
         $this->updateBlocks($request->blocks,$blog);
