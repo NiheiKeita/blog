@@ -1,5 +1,4 @@
 <script setup>
-import Footer from "@/Layouts/Footer.vue";
 import Header from "@/Layouts/Header.vue";
 import RightSideMenu from "@/Layouts/RightSideMenu.vue";
 </script>
@@ -23,6 +22,6 @@ import RightSideMenu from "@/Layouts/RightSideMenu.vue";
             <div class="lg:w-1/6 min-h-full" />
         </main>
 
-        <Footer></Footer>
+        <slot name="footer"></slot>
     </div>
 </template>

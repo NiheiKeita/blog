@@ -1,3 +1,9 @@
+<script setup>
+import CommentInput from "@/Components/comment/input.vue";
+</script>
+
 <template>
-    <footer class="h-20"></footer>
+    <footer>
+        <CommentInput></CommentInput>
+    </footer>
 </template>

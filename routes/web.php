@@ -53,4 +53,5 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->name('admin.')-
 Route::namespace('App\Http\Controllers\Api')->prefix('api')->name('api.')->group(function () {
     Route::get( '/blogs', 'BlogController@index')->name('blog.index');
     Route::get( '/tags', 'TagController@index')->name('tag.index');
+    Route::post( '/comments', 'CommentController@store')->name('comment.store');
 });

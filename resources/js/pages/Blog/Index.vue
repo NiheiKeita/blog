@@ -5,6 +5,9 @@ defineProps({ errors: Object, blogs: Object });
 const transition = () => {
     route("admin.blog.index");
 };
+const clickEvent = (on) => {
+    return on(data);
+};
 </script>
 
 <template>

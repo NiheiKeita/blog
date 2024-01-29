@@ -22,6 +22,10 @@ class Blog extends Model
     {
         return $this->hasMany(BlogBlock::class);
     }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 
     public  function scopeShowLists($query){
         return $query->where("is_private", false)->get();

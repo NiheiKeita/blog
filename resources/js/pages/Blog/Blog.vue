@@ -8,6 +8,7 @@ import SubTitle from "@/Components/blog/SubTitle.vue";
 import BlogTags from "@/Components/blog/Tags.vue";
 import BlogTitle from "@/Components/blog/Title.vue";
 import BlogURL from "@/Components/blog/URL.vue";
+import CommentInput from "@/Components/comment/input.vue";
 import Layout from "@/Layouts/Layout.vue";
 defineProps({
     hello: String,
@@ -54,6 +55,9 @@ defineProps({
             <BlogURL v-if="content.block_id == 5" :content="content.content">
                 {{ content.content }}
             </BlogURL>
+        </template>
+        <template #footer>
+            <CommentInput :blogId="blog.id"></CommentInput>
         </template>
     </Layout>
 </template>
