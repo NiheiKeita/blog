@@ -37,6 +37,8 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->name('admin.')-
 
     Route::middleware('auth:admin')->group(function () {
         Route::match(['get', 'post'], '/top', 'TopController@index')->name('top');
+        Route::get( '/comments', 'CommentController@index')->name('comment.index');
+        Route::get( '/comments/{id}', 'CommentController@show')->name('comment.show');
         Route::name('blog.')->group(function () {
             Route::get( '/blogs', 'BlogController@index')->name('index');
             Route::get( '/blogs/create', 'BlogController@create')->name('create');
